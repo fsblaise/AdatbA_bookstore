@@ -15,33 +15,33 @@ Oláh Balázs 
 ## Munka felosztása
 
 ### 1.	Hét (Dokumentáció)
-Bertók Laura:	
+#### Bertók Laura:	
 - EK-diagram létrehozása	
 - Relációsémák kialakítása	
 - Sémák normálformákra hozása	
 		
-Csizi Gergő:
+#### Csizi Gergő:
 - Adatfolyam-diagramok elkészítése	
 - Funkciómeghatározásos diagramok létrehozása	
 		
 		
-Oláh Balázs:	
+#### Oláh Balázs:	
 - Dokumentáció szövegének megírása, kitöltése	
 - Képernyőtervek készítése	
 - Github repository létrehozása	
 		
 ### 2.	Hét (Adatbázis + infrastruktúra)
-Bertók Laura:
+#### Bertók Laura:
 - TODO	
 		
 		
 		
-Csizi Gergő:
+#### Csizi Gergő:
 - TODO	
 		
 		
 		
-Oláh Balázs:
+#### Oláh Balázs:
 - TODO	
 		
 		
