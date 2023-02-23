@@ -2,19 +2,19 @@
 A university project based around OracleDB.
 
 # Adatbázis alapú rendszerek
-2022-2023/2
+2022-2023/2  
 IB152L-6
 
 # Online könyvesbolt
 
 ## Készítette:
-Bertók Laura
-Csizi Gergő Lajos
-Oláh Balázs 
+Bertók Laura  
+Csizi Gergő Lajos  
+Oláh Balázs  
 
 ## Munka felosztása
 
-## 1.	Hét (Dokumentáció)
+### 1.	Hét (Dokumentáció)
 Bertók Laura:	
 - EK-diagram létrehozása	
 - Relációsémák kialakítása	
@@ -30,7 +30,7 @@ Oláh Balázs:
 - Képernyőtervek készítése	
 - Github repository létrehozása	
 		
-## 2.	Hét (Adatbázis + infrastruktúra)
+### 2.	Hét (Adatbázis + infrastruktúra)
 Bertók Laura:
 - TODO	
 		
@@ -49,7 +49,7 @@ Oláh Balázs:
 
 ## Értékelési mód:
 
-Egyéni / Csapat
+Egyéni / __Csapat__
 
 ## Feladat szöveges leírása
 
