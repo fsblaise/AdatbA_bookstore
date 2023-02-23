@@ -16,33 +16,33 @@ Oláh Balázs 
 
 ## 1.	Hét (Dokumentáció)
 Bertók Laura:	
-  	- EK-diagram létrehozása	
-	- Relációsémák kialakítása	
-	- Sémák normálformákra hozása	
+- EK-diagram létrehozása	
+- Relációsémák kialakítása	
+- Sémák normálformákra hozása	
 		
 Csizi Gergő:
-  	- Adatfolyam-diagramok elkészítése	
-	- Funkciómeghatározásos diagramok létrehozása	
+- Adatfolyam-diagramok elkészítése	
+- Funkciómeghatározásos diagramok létrehozása	
 		
 		
 Oláh Balázs:	
-  	- Dokumentáció szövegének megírása, kitöltése	
-	- Képernyőtervek készítése	
-	- Github repository létrehozása	
+- Dokumentáció szövegének megírása, kitöltése	
+- Képernyőtervek készítése	
+- Github repository létrehozása	
 		
 ## 2.	Hét (Adatbázis + infrastruktúra)
 Bertók Laura:
-  - TODO	
+- TODO	
 		
 		
 		
 Csizi Gergő:
-  - TODO	
+- TODO	
 		
 		
 		
 Oláh Balázs:
-  - TODO	
+- TODO	
 		
 		
 		
