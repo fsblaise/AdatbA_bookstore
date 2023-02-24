@@ -16,8 +16,7 @@ Oláh Balázs 
 
 ### 1.	Hét (Dokumentáció)
 #### Bertók Laura:	
-- EK-diagram létrehozása	
-- Relációsémák kialakítása	
+- EK-diagramok leképezése relációsémákká	
 - Sémák normálformákra hozása	
 		
 #### Csizi Gergő:
@@ -26,6 +25,7 @@ Oláh Balázs 
 		
 		
 #### Oláh Balázs:	
+- EK-diagram elkészítése
 - Dokumentáció szövegének megírása, kitöltése	
 - Képernyőtervek készítése	
 - Github repository létrehozása	
