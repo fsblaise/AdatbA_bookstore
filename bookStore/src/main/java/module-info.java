@@ -1,6 +1,7 @@
 module com.bookstore.bookstore {
     requires javafx.controls;
     requires javafx.fxml;
+    requires static lombok;
 
 
     opens com.bookstore.bookstore to javafx.fxml;
