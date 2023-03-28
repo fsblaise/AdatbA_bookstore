@@ -1,9 +1,6 @@
 package com.bookstore.bookstore.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -16,6 +13,17 @@ import javax.persistence.*;
 @Table(name = "BOOK_STORE_OFFLINE")
 public class Offline {
     @Id
+    @NonNull
+    @Column(length = 10)
     private int id;
+    @Column(length = 100)
     private String place;
+
+    @OneToOne
+    @JoinColumn(name = "purchase_id", referencedColumnName = "id")
+    private Purchase purchase;
+
+    @OneToOne
+    @JoinColumn(name = "store_id", referencedColumnName = "place")
+    private Store store;
 }

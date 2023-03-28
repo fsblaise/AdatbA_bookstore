@@ -1,9 +1,6 @@
 package com.bookstore.bookstore.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -18,9 +15,17 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
+    @NonNull
+    @Column(length = 6)
     private int id;
+    @Column(length = 2)
     private int review;
+    @Column(length = 4)
+    private int production;
+    @Column(length = 20)
     private String type;
+    @Column(length = 100)
     private String name;
+    @Column(length = 20)
     private String genre;
 }

@@ -1,9 +1,6 @@
 package com.bookstore.bookstore.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -19,9 +16,17 @@ public class Purchase {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
+    @NonNull
+    @Column(length = 10)
     private int id;
+    @Basic
+    @Temporal(TemporalType.DATE)
     private Date dateOfPurchase;
+    @Column(length = 6)
     private int price;
+    @Column(length = 1)
     private int review;
-    private int userId;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 }

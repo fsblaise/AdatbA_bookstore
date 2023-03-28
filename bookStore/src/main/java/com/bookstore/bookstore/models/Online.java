@@ -7,7 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -17,7 +17,15 @@ import java.time.LocalDateTime;
 @Table(name = "BOOK_STORE_ONLINE")
 public class Online {
     @Id
+    @Column(length = 10)
     private int id;
-    private LocalDateTime dateTime; //Change this to zoned dateTime if you want to deal with zoned time
+    @Basic
+    @Temporal(TemporalType.DATE)
+    private Date dateTime;
+    @Column(length = 20)
     private String address;
+
+    @OneToOne
+    @JoinColumn(name = "purchase_id", referencedColumnName = "id")
+    private Purchase purchase;
 }
