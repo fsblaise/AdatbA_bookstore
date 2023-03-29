@@ -1,5 +1,5 @@
 # AdatbA_bookstore
-A university project based around OracleDB.
+Egy OracleDB-alapú könyvesbolt applikáció.
 
 # Adatbázis alapú rendszerek
 2022-2023/2  
@@ -10,51 +10,14 @@ IB152L-6
 ## Készítette:
 Bertók Laura  
 Csizi Gergő Lajos  
-Oláh Balázs  
+Oláh Balázs
 
-## Munka felosztása
+# Telepítés/beüzemelés
 
-### 1.	Hét (Dokumentáció)
-#### Bertók Laura:	
-- EK-diagramok leképezése relációsémákká	
-- Sémák normálformákra hozása	
-		
-#### Csizi Gergő:
-- Adatfolyam-diagramok elkészítése	
-- Funkciómeghatározásos diagramok létrehozása	
-		
-		
-#### Oláh Balázs:	
-- EK-diagram elkészítése
-- Dokumentáció szövegének megírása, kitöltése	
-- Képernyőtervek készítése	
-- Github repository létrehozása	
-		
-### 2.	Hét (Adatbázis + infrastruktúra)
-#### Bertók Laura:
-- TODO	
-		
-		
-		
-#### Csizi Gergő:
-- TODO	
-		
-		
-		
-#### Oláh Balázs:
-- TODO	
-		
-		
-		
+1. Az sshconfig fájlban meg kell adni az ssh felhasználót és a hozzá tartozó jelszót. (h-s azonosító, ahhoz tartozó jelszó)
+2. A hibernate.cfg.xml fájlban a schema, username és password mezőkbe meg kell adni a hallgató Neptun kódját 'C##' kezdéssel.
+3. Ugyanitt a 'hbm2ddl.auto' propertyt át kell írni 'create'-re. (Ez fogja létrehozni a táblákat az adatbázisban.)
+4. El kell indítani az alkalmazást, majd amint elindult bezárni.
+5. A 'hbm2ddl.auto' propertyt vissza kell írni 'validate'-re. (Így fog tudni olvasni az adatbázisból.).
+6. Működőképes a program, csak futtatni kell és használni.
 
-## Értékelési mód:
-
-Egyéni / __Csapat__
-
-## Feladat szöveges leírása
-
-Célunk egy olyan webalkalmazás elkészítése az OracleDB adatbázis segítségével, amiben könyveket lehet vásárolni online, böngészőből. Az adatbázis esetén triggereket, összetett SQL lekérdezéseket tervezünk használni, a rekordok integritását ellenőrizve. Az alkalmazást úgy valósítjuk meg, hogy kényelmes, illetve egyértelmű legyen a használata, letisztult, átlátható módon. 
-
-## Követelménykatalógus
-
-A követelménykatalógus tanult módon való megadása.
