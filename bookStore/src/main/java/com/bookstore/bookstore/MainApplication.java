@@ -22,14 +22,8 @@ public class MainApplication extends Application {
             throw new RuntimeException(e);
         }
 
-        DAO.instance().addData(new User(1, new Date(), 0, "Alma@alma.com", "Alma", false));
         System.out.println(DAO.instance().getDataByID(User.class, 1));
         System.out.println(DAO.instance().runCustomQuery(User.class, "SELECT * FROM BOOK_STORE_USER"));
-        DAO.instance().updateData(new User(1, new Date(), 0, "Alma@alma.com", "Korte", false));
-        System.out.println(DAO.instance().runCustomQuery(User.class, "SELECT * FROM BOOK_STORE_USER"));
-        DAO.instance().deleteData(new User(1, new Date(), 0, "Alma@alma.com", "Korte", false));
-        System.out.println(DAO.instance().runCustomQuery(User.class, "SELECT * FROM BOOK_STORE_USER"));
-
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 700, 500);
