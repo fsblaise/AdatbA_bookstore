@@ -33,5 +33,5 @@ public class User implements Serializable {
     private String name;
     @Column(length = 64)
     private String password;
-    private boolean isRegular;
+    private Boolean isRegular;
 }

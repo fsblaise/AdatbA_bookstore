@@ -1,9 +1,6 @@
 package com.bookstore.bookstore.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -14,6 +11,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "BOOK_STORE_ONLINE")
+@ToString
 public class Online {
     @Id
     @Column(length = 10)

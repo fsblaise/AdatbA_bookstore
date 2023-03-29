@@ -5,6 +5,8 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableView?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.bookstore.bookstore.controllers.MainController">
     <padding>
@@ -13,4 +15,9 @@
 
     <Label fx:id="welcomeText"/>
     <JFXButton text="logOut" onAction="#onLogOutButtonClick"/>
+    <JFXButton text="Users" onAction="#onUsersButtonClick"/>
+    <JFXButton text="Products" onAction="#onProductsButtonClick"/>
+    <JFXButton text="Purchases" onAction="#onPurchasesButtonClick"/>
+    <JFXButton text="Stores" onAction="#onStoresButtonClick"/>
+    <TableView fx:id="dataTable"/>
 </VBox>

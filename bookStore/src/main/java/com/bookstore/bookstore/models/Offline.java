@@ -10,6 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "BOOK_STORE_OFFLINE")
+@ToString
 public class Offline {
     @Id
     @NonNull

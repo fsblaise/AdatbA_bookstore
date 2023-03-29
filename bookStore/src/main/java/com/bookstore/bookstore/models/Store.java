@@ -10,6 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "BOOK_STORE_STORE")
+@ToString
 public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")

@@ -11,6 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "BOOK_STORE_PRODUCT")
+@ToString
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")

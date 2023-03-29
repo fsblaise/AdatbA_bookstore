@@ -12,6 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "BOOK_STORE_PURCHASE")
+@ToString
 public class Purchase {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
