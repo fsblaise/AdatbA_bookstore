@@ -7,35 +7,38 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
-import org.hibernate.jdbc.Work;
-import org.hibernate.service.ServiceRegistry;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.util.Date;
 
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        SSHConnector sshConnector;
+
         try {
-            SSHConnector sshConnector = new SSHConnector();
+            sshConnector = new SSHConnector();
         } catch (Throwable e) {
             throw new RuntimeException(e);
         }
 
-        DAO.instance().addData();
+        DAO.instance().addData(new User(1, new Date(), 0, "Alma@alma.com", "Alma", false));
+        System.out.println(DAO.instance().getDataByID(User.class, 1));
+        System.out.println(DAO.instance().runCustomQuery(User.class, "SELECT * FROM BOOK_STORE_USER"));
+        DAO.instance().updateData(new User(1, new Date(), 0, "Alma@alma.com", "Korte", false));
+        System.out.println(DAO.instance().runCustomQuery(User.class, "SELECT * FROM BOOK_STORE_USER"));
+        DAO.instance().deleteData(new User(1, new Date(), 0, "Alma@alma.com", "Korte", false));
+        System.out.println(DAO.instance().runCustomQuery(User.class, "SELECT * FROM BOOK_STORE_USER"));
+
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 700, 500);
         stage.setTitle("BookShop");
         stage.setScene(scene);
+        stage.setOnCloseRequest(windowEvent -> {
+            DAO.instance().closeSession();
+            sshConnector.closeSSH();
+        });
         stage.show();
     }
 

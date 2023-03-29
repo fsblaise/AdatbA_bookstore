@@ -1,9 +1,6 @@
 package com.bookstore.bookstore.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -16,8 +13,14 @@ import javax.persistence.*;
 @Table(name = "BOOK_STORE_STOCK")
 public class Stock {
     @Id
-    private String name;
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
+    @GenericGenerator(name = "native", strategy = "native")
+    @Column(length = 5)
+    @NonNull
+    private int name;
+    @Column(length = 4)
     private int capacity;
+    @Column(length = 3)
     private int sum;
     private int isLow;
 }

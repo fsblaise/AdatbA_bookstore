@@ -1,19 +1,19 @@
 package com.bookstore.bookstore.daos;
 
 import com.bookstore.bookstore.models.*;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.jdbc.Work;
 
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DAO {
 
     private static DAO offlineDAO;
-    private SessionFactory sessionFactory;
+    private final SessionFactory sessionFactory;
 
     private DAO() {
         // Create Configuration
@@ -32,12 +32,7 @@ public class DAO {
         // Initialize Session Object
         Session session = this.sessionFactory.openSession();
 
-        session.doWork(new Work() {
-            @Override
-            public void execute(Connection connection) throws SQLException {
-                System.out.println("Connected to database");
-            }
-        });
+        session.doWork(connection -> System.out.println("Connected to database"));
 
         session.close();
     }
@@ -50,18 +45,62 @@ public class DAO {
         return offlineDAO;
     }
 
-    public boolean addData() {
+    public void addData(Object obj) {
+        // TODO MAYBE error check
         Session session = this.sessionFactory.openSession();
-
         Transaction t = session.beginTransaction();
-        Offline offline = new Offline(1, "Alma");
-        session.save(offline);
+
+        session.save(obj);
 
         t.commit();
+        session.close();
+    }
 
+    public <T> T getDataByID(Class<T> entityClass, int id) {
+        T obj;
+        Session session = this.sessionFactory.openSession();
+        Transaction t = session.beginTransaction();
+
+        obj = session.get(entityClass, id);
+
+        t.commit();
         session.close();
 
-        return true;
+        return obj;
+    }
+
+    public void updateData(Object obj) {
+        Session session = this.sessionFactory.openSession();
+        Transaction t = session.beginTransaction();
+
+        session.update(obj);
+
+        t.commit();
+        session.close();
+    }
+
+    public void deleteData(Object obj) {
+        Session session = this.sessionFactory.openSession();
+        Transaction t = session.beginTransaction();
+
+        session.delete(obj);
+
+        t.commit();
+        session.close();
+    }
+
+    public <T> ArrayList<T> runCustomQuery(Class<T> entityClass, String sql) {
+        Session session = this.sessionFactory.openSession();
+        Transaction t = session.beginTransaction();
+
+        SQLQuery query = session.createNativeQuery(sql);
+        query.addEntity(entityClass);
+        ArrayList<T> results = (ArrayList<T>) query.list();
+
+        t.commit();
+        session.close();
+
+        return results;
     }
 
     public void closeSession() {
