@@ -1,7 +1,6 @@
 package com.bookstore.bookstore.models;
 
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 

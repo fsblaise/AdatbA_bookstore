@@ -21,7 +21,7 @@ public class Product {
     @Column(length = 2)
     private int review;
     @Column(length = 4)
-    private int production;
+    private String production;
     @Column(length = 20)
     private String type;
     @Column(length = 100)

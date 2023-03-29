@@ -6,13 +6,14 @@
     <session-factory>
         <!-- Set URL -->
         <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:orania2</property>
+        <property name="hibernate.default_schema">C##</property>  <!-- C##NEPTUN-->
         <!-- Set User Name -->
         <property name="hibernate.connection.username">C##</property> <!-- C##NEPTUN-->
         <!-- Set Password -->
         <property name="hibernate.connection.password"></property> <!-- pw for the db -->
         <!-- Set Driver Name -->
         <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
-        <property name="hbm2ddl.auto">create-drop</property>
+        <property name="hbm2ddl.auto">validate</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.dialect">org.hibernate.dialect.Oracle12cDialect</property>
     </session-factory>
