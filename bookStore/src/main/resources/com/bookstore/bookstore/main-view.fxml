@@ -7,17 +7,23 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.TableView?>
 <?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.layout.HBox?>
+<?import com.jfoenix.controls.JFXToolbar?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.Pane?>
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.bookstore.bookstore.controllers.MainController">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
     </padding>
-
-    <Label fx:id="welcomeText"/>
-    <JFXButton text="logOut" onAction="#onLogOutButtonClick"/>
-    <JFXButton text="Users" onAction="#onUsersButtonClick"/>
-    <JFXButton text="Products" onAction="#onProductsButtonClick"/>
-    <JFXButton text="Purchases" onAction="#onPurchasesButtonClick"/>
-    <JFXButton text="Stores" onAction="#onStoresButtonClick"/>
+    <ToolBar>
+        <JFXButton text="Users" style="-jfx-button-type: RAISED; -fx-background-color: lightblue; -jfx-disable-visual-focus: true" onAction="#onUsersButtonClick"/>
+        <JFXButton text="Products" style="-jfx-button-type: RAISED; -fx-background-color: lightblue; -jfx-disable-visual-focus: true" onAction="#onProductsButtonClick"/>
+        <JFXButton text="Purchases" style="-jfx-button-type: RAISED; -fx-background-color: lightblue; -jfx-disable-visual-focus: true" onAction="#onPurchasesButtonClick"/>
+        <JFXButton text="Stores" style="-jfx-button-type: RAISED; -fx-background-color: lightblue; -jfx-disable-visual-focus: true" onAction="#onStoresButtonClick"/>
+        <Label fx:id="welcomeText"/>
+        <Pane HBox.hgrow="ALWAYS" />
+        <JFXButton text="Logout" style="-jfx-button-type: RAISED; -fx-background-color: #ff3333; -jfx-disable-visual-focus: true" onAction="#onLogOutButtonClick"/>
+    </ToolBar>
     <TableView fx:id="dataTable"/>
 </VBox>
