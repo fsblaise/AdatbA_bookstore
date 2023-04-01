@@ -15,9 +15,7 @@ import java.util.Date;
 @ToString
 public class Purchase {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
-    @NonNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(length = 10)
     private int id;
     @Basic

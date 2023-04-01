@@ -7,7 +7,7 @@
         <!-- Set URL -->
         <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:orania2</property>
         <property name="hibernate.default_schema">C##</property>  <!-- C##NEPTUN-->
-        <!-- Set User Name -->
+        <!-- Set Username -->
         <property name="hibernate.connection.username">C##</property> <!-- C##NEPTUN-->
         <!-- Set Password -->
         <property name="hibernate.connection.password"></property> <!-- pw for the db -->

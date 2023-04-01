@@ -8,15 +8,13 @@ import javax.persistence.*;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
+@NoArgsConstructor(force = true)
 @Entity
 @Table(name = "BOOK_STORE_PRODUCT")
 @ToString
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
-    @NonNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(length = 6)
     private int id;
     @Column(length = 2)

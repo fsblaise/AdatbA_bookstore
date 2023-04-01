@@ -4,7 +4,6 @@
     <data-source source="LOCAL" name="@orania2.inf.u-szeged.hu" uuid="c125daf7-1d16-47e6-b62e-ff9a97418972">
       <driver-ref>oracle.19</driver-ref>
       <synchronize>true</synchronize>
-      <auto-commit>false</auto-commit>
       <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
       <jdbc-url>jdbc:oracle:thin:@orania2.inf.u-szeged.hu:1521:orania2</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>

@@ -8,6 +8,7 @@ module com.bookstore.bookstore {
     requires java.persistence;
     requires jsch;
     requires java.sql;
+    requires org.apache.commons.codec;
 
     opens com.bookstore.bookstore;
     opens com.bookstore.bookstore.controllers;

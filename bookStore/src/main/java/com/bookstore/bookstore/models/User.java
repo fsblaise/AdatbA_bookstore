@@ -13,14 +13,12 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "BOOK_STORE_USER")
+@Table(name = "BOOK_STORE_USERS")
 @ToString
 public class User implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(length = 10)
-    @NonNull
     private int id;
     @Basic
     @Temporal(TemporalType.DATE)
@@ -34,4 +32,13 @@ public class User implements Serializable {
     @Column(length = 64)
     private String password;
     private Boolean isRegular;
+
+    public User(Date birthDate, int purchasedProducts, String email, String name, String password, Boolean isRegular) {
+        this.birthDate = birthDate;
+        this.purchasedProducts = purchasedProducts;
+        this.email = email;
+        this.name = name;
+        this.password = password;
+        this.isRegular = isRegular;
+    }
 }

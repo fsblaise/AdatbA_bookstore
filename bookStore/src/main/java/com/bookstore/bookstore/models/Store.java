@@ -13,9 +13,7 @@ import javax.persistence.*;
 @ToString
 public class Store {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
-    @NonNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(length = 5)
     private int id;
     @Column(length = 7)
