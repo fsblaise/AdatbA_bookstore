@@ -16,7 +16,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="470.0" prefWidth="493.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.LoginController" stylesheets="@../bookstore/css/login.css">
+<?import java.net.URL?>
+<BorderPane prefHeight="470.0" prefWidth="493.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.LoginController">
+    <stylesheets>
+        <URL value="@css/login.css"/>
+    </stylesheets>
     <top>
         <ToolBar prefHeight="40.0" prefWidth="813.0" style="-fx-background-color: #D7CCC8; -fx-border-style: solid; -fx-border-color: #F9EEEA; -fx-border-width: 0 0 3 0;" BorderPane.alignment="CENTER">
             <Label fx:id="welcomeText" text="BookStore">

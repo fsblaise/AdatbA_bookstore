@@ -15,7 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import java.net.URL?>
 <BorderPane prefHeight="675.0" prefWidth="667.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.RegisterController">
+    <stylesheets>
+        <URL value="@css/register.css"/>
+    </stylesheets>
     <top>
         <ToolBar prefHeight="50.0" prefWidth="856.0" style="-fx-background-color: #D7CCC8; -fx-border-style: solid; -fx-border-color: #F9EEEA; -fx-border-width: 0 0 3 0;" BorderPane.alignment="CENTER">
               <Label fx:id="welcomeText" text="BookStore">

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.text.Font?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            maxHeight="250.0" maxWidth="200.0" prefHeight="250.0" prefWidth="200.0"
+            fx:controller="com.bookstore.bookstore.controllers.CardController"
+            style="-fx-border-radius: 25; -fx-background-radius: 25; -fx-background-color: #ffffff; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5, 0, 0, 0);"
+            BorderPane.alignment="CENTER">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+    <BorderPane.margin>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </BorderPane.margin>
+    <top>
+        <ImageView fx:id="image" fitHeight="201.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+        </ImageView>
+    </top>
+    <bottom>
+        <Label fx:id="name" text="1" alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="214.0" BorderPane.alignment="CENTER">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+    </bottom>
+</BorderPane>

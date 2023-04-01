@@ -1,38 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<?import java.net.URL?>
-<BorderPane prefHeight="544.0" prefWidth="677.0" stylesheets="css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.MainController">
+<BorderPane prefHeight="784.0" prefWidth="1920.0" stylesheets="css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.MainController">
     <stylesheets>
-        <URL value="@css/main.css"/>
+        <URL value="@css/main.css" />
     </stylesheets>
     <top>
-        <ToolBar prefHeight="50.0" prefWidth="856.0" id="toolbar" BorderPane.alignment="CENTER">
-            <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="385.0" spacing="15.0">
-                <children>
-                    <Label fx:id="welcomeText" text="BookStore">
-                        <font>
-                            <Font name="Segoe UI Bold" size="19.0" />
-                        </font>
-                    </Label>
-                    <MFXButton buttonType="RAISED" depthLevel="LEVEL2" styleClass="nav-button" text="Browse" />
-                    <MFXButton buttonType="RAISED" depthLevel="LEVEL2" styleClass="nav-button" text="Stores" />
-                    <MFXButton buttonType="RAISED" depthLevel="LEVEL2" styleClass="nav-button" text="Basket" />
-                    <MFXButton buttonType="RAISED" depthLevel="LEVEL2" styleClass="nav-button" text="Profile" />
-                </children>
-            </HBox>
-            <Pane HBox.hgrow="ALWAYS" />
-            <MFXButton buttonType="RAISED" onAction="#onLogOutButtonClick" id="logout" text="Logout" textFill="WHITE">
+        <HBox id="toolbar" alignment="CENTER" prefHeight="50.0" prefWidth="856.0" spacing="20.0" BorderPane.alignment="CENTER">
+              <Label fx:id="welcomeText" minWidth="94.0" text="BookStore">
+                  <font>
+                      <Font name="Segoe UI Bold" size="19.0" />
+                  </font>
+              </Label>
+              <MFXButton buttonType="RAISED" depthLevel="LEVEL2" minWidth="70.0" onAction="#onProductsButtonClick" styleClass="nav-button" text="Browse" />
+              <MFXButton buttonType="RAISED" depthLevel="LEVEL2" minWidth="70.0" styleClass="nav-button" text="Stores" />
+              <MFXButton buttonType="RAISED" depthLevel="LEVEL2" minWidth="70.0" styleClass="nav-button" text="Basket" />
+              <MFXButton buttonType="RAISED" depthLevel="LEVEL2" minWidth="70.0" styleClass="nav-button" text="Profile" />
+            <TextField id="search-bar" maxWidth="-Infinity" minWidth="150.0" prefWidth="300.0"/>
+            <MFXButton id="logout" buttonType="RAISED" minWidth="70.0" onAction="#onLogOutButtonClick" text="Logout" textFill="WHITE">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
@@ -40,13 +35,17 @@
             <padding>
                 <Insets left="20.0" right="20.0" />
             </padding>
-        </ToolBar>
+        </HBox>
     </top>
-    <center>
-        <MFXScrollPane prefHeight="520.0" prefWidth="856.0" BorderPane.alignment="CENTER">
-            <BorderPane.margin>
-                <Insets />
-            </BorderPane.margin>
-        </MFXScrollPane>
-    </center>
+   <center>
+      <ScrollPane id="scroll-pane" fitToWidth="true" hbarPolicy="NEVER" prefWidth="923.0" BorderPane.alignment="CENTER">
+         <content>
+              <TilePane fx:id="content" alignment="CENTER" hgap="10" vgap="10">
+                   <padding>
+                      <Insets top="10.0" />
+                   </padding>
+              </TilePane>
+         </content>
+      </ScrollPane>
+   </center>
 </BorderPane>

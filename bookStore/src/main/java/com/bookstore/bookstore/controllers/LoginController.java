@@ -43,12 +43,13 @@ public class LoginController {
 
         Parent root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("main-view.fxml")));
         Stage window = (Stage) welcomeText.getScene().getWindow();
-        window.setScene(new Scene(root, 700, 500));
+        window.setScene(new Scene(root, 800, 600));
+        window.setMaximized(true);
     }
 
     public void onRegisterButtonClick(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("register-view.fxml")));
         Stage window = (Stage) welcomeText.getScene().getWindow();
-        window.setScene(new Scene(root, 700, 500));
+        window.setScene(new Scene(root, 800, 600));
     }
 }
