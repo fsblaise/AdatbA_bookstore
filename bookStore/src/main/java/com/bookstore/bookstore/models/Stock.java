@@ -14,10 +14,8 @@ import javax.persistence.*;
 @ToString
 public class Stock {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
-    @GenericGenerator(name = "native", strategy = "native")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(length = 5)
-    @NonNull
     private int name;
     @Column(length = 4)
     private int capacity;

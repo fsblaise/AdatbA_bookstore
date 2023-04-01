@@ -55,7 +55,7 @@ public class MainController {
     }
 
     public void onUsersButtonClick(ActionEvent actionEvent) {
-        ArrayList<User> data = DAO.instance().runCustomQuery(User.class, "SELECT * FROM BOOK_STORE_USER");
+        ArrayList<User> data = DAO.instance().runCustomQuery(User.class, "SELECT * FROM BOOK_STORE_USERS");
         this.generateTable(data);
     }
 

@@ -1,7 +1,6 @@
 package com.bookstore.bookstore;
 
 import com.bookstore.bookstore.daos.DAO;
-import com.bookstore.bookstore.models.*;
 import com.bookstore.bookstore.sshconfig.SSHConnector;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -9,11 +8,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Date;
+import java.util.logging.Level;
 
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.WARNING);
         SSHConnector sshConnector;
 
         try {
@@ -22,8 +22,7 @@ public class MainApplication extends Application {
             throw new RuntimeException(e);
         }
 
-        System.out.println(DAO.instance().getDataByID(User.class, 1));
-        System.out.println(DAO.instance().runCustomQuery(User.class, "SELECT * FROM BOOK_STORE_USER"));
+        DAO.instance();
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 700, 500);

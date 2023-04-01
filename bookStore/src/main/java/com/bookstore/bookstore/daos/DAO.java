@@ -1,16 +1,21 @@
 package com.bookstore.bookstore.daos;
 
 import com.bookstore.bookstore.models.*;
+import lombok.Getter;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import javax.persistence.Query;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 public class DAO {
+    @Getter
+    private static User currentUser;
 
     private static DAO offlineDAO;
     private final SessionFactory sessionFactory;
@@ -89,6 +94,7 @@ public class DAO {
         session.close();
     }
 
+    // TODO: private
     public <T> ArrayList<T> runCustomQuery(Class<T> entityClass, String sql) {
         Session session = this.sessionFactory.openSession();
         Transaction t = session.beginTransaction();
@@ -101,6 +107,20 @@ public class DAO {
         session.close();
 
         return results;
+    }
+
+    public void loginUser(String email, String password) {
+        Session session = this.sessionFactory.openSession();
+        Transaction t = session.beginTransaction();
+
+        ArrayList<User> results = (ArrayList<User>) session.createNativeQuery("SELECT * FROM BOOK_STORE_USERS WHERE email = ? AND password = ?", User.class).setParameter(1, email).setParameter(2, DigestUtils.sha256Hex(password)).list();
+
+        if (results.size() != 0) {
+            currentUser = results.get(0);
+        }
+
+        t.commit();
+        session.close();
     }
 
     public void closeSession() {
