@@ -1,0 +1,28 @@
+.nav-button {
+    -fx-border-radius: 10px;
+    -fx-background-color: #ffffff;
+}
+
+.nav-button:hover {
+    -fx-text-fill: #795548;
+    -fx-cursor: hand;
+}
+
+#logout {
+    -fx-background-color: #795548;
+    -fx-border-radius: 10px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+#logout:hover {
+    -fx-text-fill: #D7CCC8;
+    -fx-cursor: hand;
+}
+
+#toolbar {
+    -fx-background-color: #D7CCC8;
+    -fx-border-style: solid;
+    -fx-border-color: #F9EEEA;
+    -fx-border-width: 0 0 3 0;
+}

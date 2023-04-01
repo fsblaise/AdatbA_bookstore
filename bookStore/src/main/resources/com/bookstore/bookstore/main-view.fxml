@@ -1,29 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXScrollPane?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
-<?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.TableView?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
-<?import javafx.scene.layout.HBox?>
-<?import com.jfoenix.controls.JFXToolbar?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.bookstore.bookstore.controllers.MainController">
-    <padding>
-        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-    </padding>
-    <ToolBar>
-        <JFXButton text="Users" style="-jfx-button-type: RAISED; -fx-background-color: lightblue; -jfx-disable-visual-focus: true" onAction="#onUsersButtonClick"/>
-        <JFXButton text="Products" style="-jfx-button-type: RAISED; -fx-background-color: lightblue; -jfx-disable-visual-focus: true" onAction="#onProductsButtonClick"/>
-        <JFXButton text="Purchases" style="-jfx-button-type: RAISED; -fx-background-color: lightblue; -jfx-disable-visual-focus: true" onAction="#onPurchasesButtonClick"/>
-        <JFXButton text="Stores" style="-jfx-button-type: RAISED; -fx-background-color: lightblue; -jfx-disable-visual-focus: true" onAction="#onStoresButtonClick"/>
-        <Label fx:id="welcomeText"/>
-        <Pane HBox.hgrow="ALWAYS" />
-        <JFXButton text="Logout" style="-jfx-button-type: RAISED; -fx-background-color: #ff3333; -jfx-disable-visual-focus: true" onAction="#onLogOutButtonClick"/>
-    </ToolBar>
-    <TableView fx:id="dataTable"/>
-</VBox>
+<?import javafx.scene.text.Font?>
+
+<?import java.net.URL?>
+<BorderPane prefHeight="544.0" prefWidth="677.0" stylesheets="css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.MainController">
+    <stylesheets>
+        <URL value="@css/main.css"/>
+    </stylesheets>
+    <top>
+        <ToolBar prefHeight="50.0" prefWidth="856.0" id="toolbar" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="385.0" spacing="15.0">
+                <children>
+                    <Label fx:id="welcomeText" text="BookStore">
+                        <font>
+                            <Font name="Segoe UI Bold" size="19.0" />
+                        </font>
+                    </Label>
+                    <MFXButton buttonType="RAISED" depthLevel="LEVEL2" styleClass="nav-button" text="Browse" />
+                    <MFXButton buttonType="RAISED" depthLevel="LEVEL2" styleClass="nav-button" text="Stores" />
+                    <MFXButton buttonType="RAISED" depthLevel="LEVEL2" styleClass="nav-button" text="Basket" />
+                    <MFXButton buttonType="RAISED" depthLevel="LEVEL2" styleClass="nav-button" text="Profile" />
+                </children>
+            </HBox>
+            <Pane HBox.hgrow="ALWAYS" />
+            <MFXButton buttonType="RAISED" onAction="#onLogOutButtonClick" id="logout" text="Logout" textFill="WHITE">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </MFXButton>
+            <padding>
+                <Insets left="20.0" right="20.0" />
+            </padding>
+        </ToolBar>
+    </top>
+    <center>
+        <MFXScrollPane prefHeight="520.0" prefWidth="856.0" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets />
+            </BorderPane.margin>
+        </MFXScrollPane>
+    </center>
+</BorderPane>
