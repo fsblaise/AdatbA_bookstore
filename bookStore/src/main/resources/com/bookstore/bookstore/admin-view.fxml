@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="content" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.AdminController">
+    <Button fx:id="addProduct" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAddProduct"
+            text="Add Product"/>
+    <Button layoutX="270.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAddStore" text="Add Store"/>
+    <Button layoutX="526.0" layoutY="14.0" mnemonicParsing="false" onAction="#onLogOut" text="logOut"/>
+    <Button layoutX="14.0" layoutY="52.0" mnemonicParsing="false" onAction="#onModifyProduct" text="Modify Product"/>
+    <Button layoutX="270.0" layoutY="52.0" mnemonicParsing="false" onAction="#onModifyStore" text="Modify Store"/>
+    <Button layoutX="14.0" layoutY="93.0" mnemonicParsing="false" onAction="#onDeleteProduct" text="Delete Product"/>
+    <Button layoutX="270.0" layoutY="93.0" mnemonicParsing="false" onAction="#onDeleteStore" text="Delete Store"/>
+</AnchorPane>

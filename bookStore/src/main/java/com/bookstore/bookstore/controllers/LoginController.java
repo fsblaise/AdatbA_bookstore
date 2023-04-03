@@ -34,6 +34,13 @@ public class LoginController {
             return;
         }
 
+        if (emailString.equals("admin") && passwordString.equals("admin")){
+            Parent root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("admin-view.fxml")));
+            Stage window = (Stage) welcomeText.getScene().getWindow();
+            window.setScene(new Scene(root, 700, 500));
+            return;
+        }
+
         DAO.instance().loginUser(emailString, passwordString);
 
         if (DAO.getCurrentUser() == null) {
