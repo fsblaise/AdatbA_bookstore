@@ -1,3 +1,5 @@
+@import 'global.css';
+
 .nav-button {
     -fx-border-radius: 10px;
     -fx-background-color: #ffffff;
@@ -9,22 +11,15 @@
 }
 
 #logout {
-    -fx-background-color: #795548;
-    -fx-border-radius: 10px;
+    -fx-background-color: #795548 !important;
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
 
 #logout:hover {
-    -fx-text-fill: #D7CCC8;
-    -fx-cursor: hand;
-}
-
-#toolbar {
-    -fx-background-color: #D7CCC8;
-    -fx-border-style: solid;
-    -fx-border-color: #F9EEEA;
-    -fx-border-width: 0 0 3 0;
+    -fx-border-color: none !important;
+    -fx-text-fill: #D7CCC8 !important;
+    -fx-cursor: hand !important;
 }
 
 #scroll-pane .track{
@@ -53,7 +48,6 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 0);
 }
 
-* {
-    -fx-focus-color: transparent;
-    -fx-faint-focus-color: transparent;
+.mfx-text-field .floating-text {
+    -fx-background-color: transparent;
 }

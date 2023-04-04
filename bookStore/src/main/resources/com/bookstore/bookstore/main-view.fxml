@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -11,6 +10,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.Button?>
 <BorderPane prefHeight="784.0" prefWidth="1920.0" stylesheets="css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.MainController">
     <stylesheets>
         <URL value="@css/main.css" />
@@ -22,30 +22,29 @@
                       <Font name="Segoe UI Bold" size="19.0" />
                   </font>
               </Label>
-              <MFXButton buttonType="RAISED" depthLevel="LEVEL2" minWidth="70.0" onAction="#onProductsButtonClick" styleClass="nav-button" text="Browse" />
-              <MFXButton buttonType="RAISED" depthLevel="LEVEL2" minWidth="70.0" styleClass="nav-button" text="Stores" />
-              <MFXButton buttonType="RAISED" depthLevel="LEVEL2" minWidth="70.0" styleClass="nav-button" text="Basket" />
-              <MFXButton buttonType="RAISED" depthLevel="LEVEL2" minWidth="70.0" styleClass="nav-button" text="Profile" />
-            <TextField id="search-bar" maxWidth="-Infinity" minWidth="150.0" prefWidth="300.0"/>
-            <MFXButton id="logout" buttonType="RAISED" minWidth="70.0" onAction="#onLogOutButtonClick" text="Logout" textFill="WHITE">
+              <Button minWidth="70.0" onAction="#onProductsButtonClick" styleClass="nav-button, raised" text="Browse" />
+              <Button minWidth="70.0" styleClass="nav-button, raised" text="Stores" />
+              <Button minWidth="70.0" styleClass="nav-button, raised" text="Basket" />
+              <Button minWidth="70.0" styleClass="nav-button, raised" text="Profile" />
+            <TextField onAction="#onSearch" fx:id="searchBar" id="search-bar" maxWidth="-Infinity" minWidth="150.0" prefWidth="300.0"/>
+            <Button styleClass="raised" id="logout" minWidth="70.0" onAction="#onLogOutButtonClick" text="Logout" textFill="WHITE">
                 <font>
                     <Font name="System Bold" size="12.0" />
                 </font>
-            </MFXButton>
+            </Button>
             <padding>
                 <Insets left="20.0" right="20.0" />
             </padding>
         </HBox>
     </top>
    <center>
-      <ScrollPane id="scroll-pane" fitToWidth="true" hbarPolicy="NEVER" prefWidth="923.0" BorderPane.alignment="CENTER">
-         <content>
-              <TilePane fx:id="content" alignment="CENTER" hgap="10" vgap="10">
-                   <padding>
-                      <Insets top="10.0" />
-                   </padding>
-              </TilePane>
-         </content>
-      </ScrollPane>
+       <ScrollPane id="scroll-pane" fitToWidth="true" hbarPolicy="NEVER" prefWidth="923.0"
+                   BorderPane.alignment="CENTER">
+           <TilePane fx:id="content" alignment="CENTER" hgap="20" vgap="20">
+               <padding>
+                   <Insets top="10.0"/>
+               </padding>
+           </TilePane>
+       </ScrollPane>
    </center>
 </BorderPane>

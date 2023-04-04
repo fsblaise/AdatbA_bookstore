@@ -2,7 +2,6 @@ package com.bookstore.bookstore.controllers;
 
 import com.bookstore.bookstore.MainApplication;
 import com.bookstore.bookstore.daos.DAO;
-import com.bookstore.bookstore.models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,11 +17,12 @@ import java.util.Objects;
 
 public class LoginController {
     @FXML
+    private PasswordField password;
+    @FXML
     private Label welcomeText;
     @FXML
-    TextField email;
-    @FXML
-    PasswordField password;
+    private TextField email;
+
 
     @FXML
     protected void onLoginButtonClick() throws IOException {
@@ -43,13 +43,15 @@ public class LoginController {
 
         Parent root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("main-view.fxml")));
         Stage window = (Stage) welcomeText.getScene().getWindow();
-        window.setScene(new Scene(root, 800, 600));
+        Scene scene = new Scene(root, 800, 600);
+        window.setScene(scene);
         window.setMaximized(true);
     }
 
     public void onRegisterButtonClick(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("register-view.fxml")));
         Stage window = (Stage) welcomeText.getScene().getWindow();
-        window.setScene(new Scene(root, 800, 600));
+        Scene scene = new Scene(root, 800, 600);
+        window.setScene(scene);
     }
 }

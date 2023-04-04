@@ -1,0 +1,79 @@
+/*
+    Colors exported from:
+    https://www.materialpalette.com/brown/grey
+ */
+
+* {
+    /*Main color scheme*/
+    -color-primary: #795548;
+    -color-dark-primary: #5D4037;
+    -color-dark-primary-rgb: rgb(93, 64, 55);
+    -color-light-primary: #D7CCC8;
+    -color-accent: #9E9E9E;
+    -color-primary-text: #212121;
+    -color-primary-text-rgb: rgb(33,33,33);
+    -color-secondary-text: #757575;
+    -color-divider: #BDBDBD;
+}
+
+* {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-text-fill: -color-primary-text;
+}
+
+#toolbar {
+    -fx-background-color: #D7CCC8;
+    -fx-border-style: solid;
+    -fx-border-color: #F9EEEA;
+    -fx-border-width: 0 0 3 0;
+}
+
+#toolbar Button {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 5;
+    -fx-border-radius: 5;
+}
+
+#toolbar Button:hover {
+    -fx-border-color: -color-primary;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5;
+    -fx-text-fill: -color-primary;
+    -fx-cursor: hand;
+}
+
+Button:hover {
+    -fx-cursor: hand;
+}
+
+.raised {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.12, -1.0, 2.0);
+}
+
+TextField, PasswordField, DatePicker {
+    -fx-background-color: white;
+    -fx-background-radius: 5px;
+    -fx-text-box-border: transparent;
+    -fx-border-radius: 5px;
+    -fx-border-color: -color-divider;
+}
+
+TextField:focused, PasswordField:focused, DatePicker:focused {
+    -fx-border-color: -color-primary;
+}
+
+.card {
+    -fx-border-radius: 25;
+    -fx-background-radius: 25;
+    -fx-background-color: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.12, -1.0, 2.0);
+}
+
+.card-effect:hover {
+    -fx-animated: true;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-scale-z: 1.05;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0.12, -1.0, 2.0);
+}

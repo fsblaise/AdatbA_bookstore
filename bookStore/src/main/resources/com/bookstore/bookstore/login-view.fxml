@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -16,79 +12,76 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import java.net.URL?>
-<BorderPane prefHeight="470.0" prefWidth="493.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.LoginController">
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Button?>
+<BorderPane prefHeight="470.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.LoginController">
     <stylesheets>
-        <URL value="@css/login.css"/>
+        <URL value="@css/login.css" />
     </stylesheets>
     <top>
-        <ToolBar prefHeight="40.0" prefWidth="813.0" style="-fx-background-color: #D7CCC8; -fx-border-style: solid; -fx-border-color: #F9EEEA; -fx-border-width: 0 0 3 0;" BorderPane.alignment="CENTER">
+        <HBox id="toolbar" alignment="CENTER" prefHeight="50.0" prefWidth="856.0" spacing="20.0" BorderPane.alignment="CENTER">
             <Label fx:id="welcomeText" text="BookStore">
                 <font>
                     <Font name="Segoe UI Bold" size="19.0" />
                 </font>
             </Label>
             <Pane HBox.hgrow="ALWAYS" />
-         <MFXButton buttonType="RAISED" depthLevel="LEVEL1" onAction="#onRegisterButtonClick" text="Register" style="-fx-background-color: #ffffff" />
+         <Button styleClass="raised" onAction="#onRegisterButtonClick" text="Register" />
             <padding>
                 <Insets left="20.0" right="20.0" />
             </padding>
-        </ToolBar>
+        </HBox>
     </top>
     <center>
-        <GridPane alignment="CENTER" maxHeight="300.0" maxWidth="600.0" prefHeight="250.0" prefWidth="400.0" style="-fx-border-radius: 25; -fx-background-radius: 25; -fx-background-color: #ffffff; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5, 0, 0, 0);" BorderPane.alignment="CENTER">
+        <GridPane alignment="CENTER" maxHeight="300.0" maxWidth="600.0" prefHeight="250.0" prefWidth="400.0"
+                  styleClass="card"
+                  BorderPane.alignment="CENTER">
             <columnConstraints>
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="253.0" minWidth="120.0" prefWidth="231.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="592.0" minWidth="10.0" prefWidth="527.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="253.0" minWidth="120.0"
+                                   prefWidth="231.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="592.0" minWidth="10.0"
+                                   prefWidth="527.0"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" valignment="CENTER" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES"/>
             </rowConstraints>
-            <children>
-                <HBox alignment="CENTER" prefHeight="68.0" prefWidth="534.0" spacing="50.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-                    <children>
-                        <Button contentDisplay="CENTER" onAction="#onLoginButtonClick" prefHeight="35.0" prefWidth="100.0" style="-fx-border-radius: 10; -fx-background-radius: 10; -fx-background-color: lightgreen; -fx-border-color: #aaaaaa;" text="Login">
-                            <font>
-                                <Font name="Segoe UI" size="14.0" />
-                            </font>
-                        </Button>
-                    </children>
-                </HBox>
-                <VBox alignment="CENTER" prefHeight="185.0" prefWidth="187.0" spacing="15.0">
-                    <children>
-                        <Label minHeight="25.0" text="Email">
-                            <font>
-                                <Font name="Segoe UI Bold" size="14.0" />
-                            </font>
-                        </Label>
-                        <Label minHeight="25.0" text="Password">
-                            <font>
-                                <Font name="Segoe UI Bold" size="14.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </VBox>
-                <VBox alignment="CENTER" prefHeight="185.0" prefWidth="342.0" spacing="15.0" GridPane.columnIndex="1">
-                    <children>
-                        <TextField fx:id="email" minHeight="25.0" />
-                        <PasswordField fx:id="password" minHeight="25.0" />
-                    </children>
-                    <padding>
-                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-                    </padding>
-                </VBox>
-            </children>
             <opaqueInsets>
-                <Insets />
+                <Insets/>
             </opaqueInsets>
             <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
             </padding>
             <BorderPane.margin>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
             </BorderPane.margin>
+            <HBox alignment="CENTER" prefHeight="68.0" prefWidth="534.0" spacing="50.0" GridPane.columnIndex="1"
+                  GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                <Button styleClass="raised" id="login" contentDisplay="CENTER" onAction="#onLoginButtonClick" prefHeight="35.0"
+                        prefWidth="100.0" text="Login"/>
+            </HBox>
+            <VBox alignment="CENTER" prefHeight="185.0" prefWidth="187.0" spacing="15.0">
+                <Label minHeight="25.0" text="Email">
+                    <font>
+                        <Font name="Segoe UI Bold" size="14.0"/>
+                    </font>
+                </Label>
+                <Label minHeight="25.0" text="Password">
+                    <font>
+                        <Font name="Segoe UI Bold" size="14.0"/>
+                    </font>
+                </Label>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="185.0" prefWidth="342.0" spacing="15.0" GridPane.columnIndex="1"
+                  GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="CENTER"
+                  GridPane.vgrow="NEVER">
+                <padding>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                </padding>
+                <TextField fx:id="email" minHeight="25.0" prefHeight="25.0" prefWidth="280.0"/>
+                <PasswordField fx:id="password" minHeight="25.0" prefHeight="25.0" prefWidth="280.0"/>
+            </VBox>
         </GridPane>
     </center>
-    <Button onAction="#onLoginButtonClick" text="login" />
 </BorderPane>
