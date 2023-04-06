@@ -38,7 +38,8 @@ public class RegisterController {
     protected void onLoginButtonClick() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("login-view.fxml")));
         Stage window = (Stage) welcomeText.getScene().getWindow();
-        window.setScene(new Scene(root, 700, 500));
+        Scene scene = new Scene(root, 800, 600);
+        window.setScene(scene);
     }
 
     public void onRegisterButtonClick(ActionEvent actionEvent) throws IOException {
@@ -67,6 +68,7 @@ public class RegisterController {
 
         Parent root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("login-view.fxml")));
         Stage window = (Stage) welcomeText.getScene().getWindow();
-        window.setScene(new Scene(root, 700, 500));
+        Scene scene = new Scene(root, 800, 600);
+        window.setScene(scene);
     }
 }

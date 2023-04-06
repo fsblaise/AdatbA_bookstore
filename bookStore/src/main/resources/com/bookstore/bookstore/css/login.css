@@ -1,0 +1,8 @@
+@import 'global.css';
+
+#login {
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-background-color: -color-primary;
+    -fx-text-fill: white;
+}

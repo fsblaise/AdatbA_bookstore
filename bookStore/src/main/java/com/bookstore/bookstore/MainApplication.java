@@ -6,7 +6,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.logging.Level;
 
@@ -25,7 +24,7 @@ public class MainApplication extends Application {
         DAO.instance();
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 700, 500);
+        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("BookShop");
         stage.setScene(scene);
         stage.setOnCloseRequest(windowEvent -> {

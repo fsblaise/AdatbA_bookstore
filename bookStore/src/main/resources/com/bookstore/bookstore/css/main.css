@@ -1,0 +1,76 @@
+@import 'global.css';
+
+.nav-button {
+    -fx-border-radius: 10px;
+    -fx-background-color: #ffffff;
+}
+
+.nav-button:hover {
+    -fx-text-fill: #795548;
+    -fx-cursor: hand;
+}
+
+#logout {
+    -fx-background-color: #795548 !important;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+#logout:hover {
+    -fx-border-color: none !important;
+    -fx-text-fill: #D7CCC8 !important;
+    -fx-cursor: hand !important;
+}
+
+#scroll-pane .track{
+    -fx-background-color: #D7CCC8;
+}
+
+#scroll-pane .thumb {
+    -fx-background-color: #795548;
+}
+
+#scroll-pane .thumb:hover {
+    -fx-background-color: #5D4037;
+}
+
+#search-bar {
+    -fx-background-radius: 15px;
+    -fx-border-radius: 15px;
+    -fx-text-fill: #757575;
+    -fx-background-image:url('../image/search-outline.png');
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: right 5 center;
+}
+
+#search-bar:focused {
+    -fx-border-color: #795548;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 0);
+}
+
+.mfx-text-field .floating-text {
+    -fx-background-color: transparent;
+}
+
+.card:hover #title {
+    -fx-translate-y: -20;
+    -fx-opacity: 0;
+    -fx-pref-height: 0;
+}
+
+.card:hover #img {
+    -fx-translate-y: -20;
+}
+
+.card:hover #details {
+    -fx-background-radius: 15px;
+    -fx-background-color: -color-light-primary;
+    -fx-text-fill: -color-dark-primary;
+    -fx-pref-height: unset;
+    -fx-opacity: 1;
+}
+
+#details {
+    -fx-opacity: 0;
+    -fx-pref-height: 0;
+}
