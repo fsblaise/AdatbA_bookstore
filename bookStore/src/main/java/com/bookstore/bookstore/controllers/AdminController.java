@@ -3,7 +3,9 @@ package com.bookstore.bookstore.controllers;
 import com.bookstore.bookstore.MainApplication;
 import com.bookstore.bookstore.daos.DAO;
 import com.bookstore.bookstore.models.Product;
+import com.bookstore.bookstore.models.Purchase;
 import com.bookstore.bookstore.models.Store;
+import com.bookstore.bookstore.models.User;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -11,17 +13,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.lang.reflect.Field;
+import java.util.*;
 
 public class AdminController {
     @FXML
@@ -29,6 +28,7 @@ public class AdminController {
     @FXML
     private Button addProduct;
     private List<Node> items;
+    private TableColumn[] columns;
 
     @FXML
     protected void onAddProduct() throws IOException {
@@ -268,7 +268,7 @@ public class AdminController {
     public void onDeleteProduct() {
         String idString = getDataFromDialog();
 
-        if (idString.isEmpty()){
+        if (idString.isEmpty()) {
             //TODO error
             return;
         }
@@ -279,12 +279,63 @@ public class AdminController {
     public void onDeleteStore() {
         String idString = getDataFromDialog();
 
-        if (idString.isEmpty()){
+        if (idString.isEmpty()) {
             //TODO error
             return;
         }
 
         DAO.instance().deleteData(DAO.instance().getDataByID(Store.class, Integer.parseInt(idString)));
+    }
+
+    public <T> void generateTable(ArrayList<T> data) {
+        if (items != null) {
+            content.getChildren().removeAll(items);
+        }
+
+        items = new ArrayList<>();
+        TableView<T> dataTable = new TableView<T>();
+        dataTable.setLayoutY(150);
+        dataTable.setPrefWidth(content.getPrefWidth());
+        dataTable.setPrefHeight(200);
+
+        dataTable.getColumns().clear();
+        dataTable.getItems().clear();
+        List<Field> properties = Arrays.asList(data.get(0).getClass().getDeclaredFields());
+        columns = new TableColumn[properties.size()];
+
+        for (int i = 0; i < columns.length; i++) {
+            columns[i] = new TableColumn<T, String>(properties.get(i).getName());
+            columns[i].setCellValueFactory(new PropertyValueFactory<>(properties.get(i).getName()));
+            dataTable.getColumns().add(columns[i]);
+        }
+
+        for (var item : data) {
+            dataTable.getItems().add(item);
+        }
+
+        items.add(dataTable);
+
+        content.getChildren().addAll(items);
+    }
+
+    public void onUsersButtonClick(ActionEvent actionEvent) {
+        ArrayList<User> data = DAO.instance().runCustomQuery(User.class, "SELECT * FROM BOOK_STORE_USERS");
+        this.generateTable(data);
+    }
+
+    public void onProductsButtonClick(ActionEvent actionEvent) {
+        ArrayList<Product> data = DAO.instance().runCustomQuery(Product.class, "SELECT * FROM BOOK_STORE_PRODUCT");
+        this.generateTable(data);
+    }
+
+    public void onPurchasesButtonClick(ActionEvent actionEvent) {
+        ArrayList<Purchase> data = DAO.instance().runCustomQuery(Purchase.class, "SELECT * FROM BOOK_STORE_PURCHASE");
+        this.generateTable(data);
+    }
+
+    public void onStoresButtonClick(ActionEvent actionEvent) {
+        ArrayList<Store> data = DAO.instance().runCustomQuery(Store.class, "SELECT * FROM BOOK_STORE_STORE");
+        this.generateTable(data);
     }
 
     public void onLogOut() throws IOException {
