@@ -77,3 +77,9 @@ TextField:focused, PasswordField:focused, DatePicker:focused {
     -fx-scale-z: 1.05;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0.12, -1.0, 2.0);
 }
+
+.tooltip {
+    -fx-background-color: #ffffff;
+    -fx-border-color: -color-primary;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.12, -1.0, 2.0);
+}

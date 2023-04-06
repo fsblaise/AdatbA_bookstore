@@ -51,3 +51,26 @@
 .mfx-text-field .floating-text {
     -fx-background-color: transparent;
 }
+
+.card:hover #title {
+    -fx-translate-y: -20;
+    -fx-opacity: 0;
+    -fx-pref-height: 0;
+}
+
+.card:hover #img {
+    -fx-translate-y: -20;
+}
+
+.card:hover #details {
+    -fx-background-radius: 15px;
+    -fx-background-color: -color-light-primary;
+    -fx-text-fill: -color-dark-primary;
+    -fx-pref-height: unset;
+    -fx-opacity: 1;
+}
+
+#details {
+    -fx-opacity: 0;
+    -fx-pref-height: 0;
+}

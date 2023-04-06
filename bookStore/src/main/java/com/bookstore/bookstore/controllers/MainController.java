@@ -13,11 +13,17 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.TilePane;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import org.hibernate.boot.archive.internal.UrlInputStreamAccess;
+
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Objects;
 
@@ -45,16 +51,37 @@ public class MainController {
                 BorderPane card = new BorderPane();
                 card.getStyleClass().add("card");
                 card.getStyleClass().add("card-effect");
-                card.setMinSize(200,250);
+                card.setMinSize(200,230);
 
-                Label label = new Label(item.getName() + " (" + item.getProduction() + ")");
-                BorderPane.setAlignment(label, Pos.CENTER);
+                Label title = new Label(item.getName() + " (" + item.getProduction() + ")");
+                title.setWrapText(true);
+                title.setMaxWidth(160);
+                title.setAlignment(Pos.CENTER);
+                title.setTextAlignment(TextAlignment.CENTER);
+                BorderPane.setAlignment(title, Pos.CENTER);
+                title.setId("title");
 
-                Tooltip tooltip = new Tooltip( "Rating: " + item.getReview() + "\n" + "Genre: " + item.getGenre() + "\n" + "Type: " + item.getType());
-                tooltip.setShowDelay(Duration.seconds(0.3));
-                Tooltip.install(label, tooltip);
+                Label details = new Label("Rating: " + item.getReview() + "\n" + "Genre: " + item.getGenre() + "\n" + "Type: " + item.getType());
+                details.setWrapText(true);
+                details.setMaxWidth(160);
+                details.setAlignment(Pos.CENTER);
+                details.setTextAlignment(TextAlignment.CENTER);
+                BorderPane.setAlignment(details, Pos.CENTER);
+                details.setId("details");
 
-                card.setBottom(label);
+                Image img = new Image(getClass().getResource("/com/bookstore/bookstore/image/book.png").toExternalForm());
+                ImageView imageView = new ImageView();
+                imageView.setImage(img);
+                imageView.setPreserveRatio(true);
+                imageView.setFitHeight(140);
+                imageView.setId("img");
+
+                Tooltip tooltip = new Tooltip(item.getName() + " (" + item.getProduction() + ")");
+                Tooltip.install(imageView,tooltip);
+
+                card.setTop(title);
+                card.setCenter(imageView);
+                card.setBottom(details);
                 content.getChildren().add(card);
             }
         } catch (Exception e) {
