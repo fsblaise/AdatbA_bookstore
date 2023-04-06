@@ -9,9 +9,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-import javax.persistence.Query;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashMap;
 
 public class DAO {
     @Getter
@@ -19,6 +18,9 @@ public class DAO {
 
     private static DAO offlineDAO;
     private final SessionFactory sessionFactory;
+
+    @Getter
+    public static HashMap<Integer, Integer> cart = new HashMap<>();
 
     private DAO() {
         // Create Configuration
@@ -50,15 +52,19 @@ public class DAO {
         return offlineDAO;
     }
 
-    public void addData(Object obj) {
+    public int addData(Object obj) {
+        int id = -1;
         // TODO MAYBE error check
         Session session = this.sessionFactory.openSession();
         Transaction t = session.beginTransaction();
 
-        session.save(obj);
+        id = (Integer) session.save(obj);
+        System.out.println(id);
 
         t.commit();
         session.close();
+
+        return id;
     }
 
     public <T> T getDataByID(Class<T> entityClass, int id) {

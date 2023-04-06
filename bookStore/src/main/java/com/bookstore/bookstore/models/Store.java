@@ -10,7 +10,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "BOOK_STORE_STORE")
-@ToString
 public class Store {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,4 +21,9 @@ public class Store {
     private String place;
     @Column(length = 6)
     private int capacity;
+
+    @Override
+    public String toString() {
+        return this.place;
+    }
 }

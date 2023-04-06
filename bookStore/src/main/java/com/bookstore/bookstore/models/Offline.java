@@ -13,7 +13,7 @@ import javax.persistence.*;
 @ToString
 public class Offline {
     @Id
-    @NonNull
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(length = 10)
     private int id;
     @Column(length = 100)

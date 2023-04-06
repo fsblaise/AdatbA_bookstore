@@ -14,6 +14,7 @@ import java.util.Date;
 @ToString
 public class Online {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(length = 10)
     private int id;
     @Basic
