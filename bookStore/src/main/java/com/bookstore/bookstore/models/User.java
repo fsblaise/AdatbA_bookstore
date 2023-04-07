@@ -32,13 +32,4 @@ public class User implements Serializable {
     @Column(length = 64)
     private String password;
     private Boolean isRegular;
-
-    public User(Date birthDate, int purchasedProducts, String email, String name, String password, Boolean isRegular) {
-        this.birthDate = birthDate;
-        this.purchasedProducts = purchasedProducts;
-        this.email = email;
-        this.name = name;
-        this.password = password;
-        this.isRegular = isRegular;
-    }
 }

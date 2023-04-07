@@ -8,7 +8,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.text.Font?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
@@ -23,13 +22,15 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </BorderPane.margin>
     <top>
-        <ImageView fx:id="image" fitHeight="201.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+        <ImageView fx:id="image" fitHeight="201.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true"
+                   BorderPane.alignment="CENTER">
         </ImageView>
     </top>
     <bottom>
-        <Label fx:id="name" text="1" alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="214.0" BorderPane.alignment="CENTER">
+        <Label fx:id="name" text="1" alignment="CENTER" contentDisplay="CENTER" prefHeight="49.0" prefWidth="214.0"
+               BorderPane.alignment="CENTER">
             <font>
-                <Font size="24.0" />
+                <Font size="24.0"/>
             </font>
         </Label>
     </bottom>

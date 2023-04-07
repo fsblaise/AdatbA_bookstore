@@ -21,8 +21,6 @@ import java.util.*;
 
 public class CheckOutController {
     @FXML
-    private Button cancel;
-    @FXML
     private AnchorPane content;
     @FXML
     private Button doneOnline;
@@ -43,7 +41,7 @@ public class CheckOutController {
         this.generateTable(this.cartArray);
     }
 
-    public void onDoneOnline(ActionEvent actionEvent) {
+    public void onDoneOnline() {
         TextInputDialog dialog = new TextInputDialog("Address");
         dialog.setTitle("Address for the order");
         dialog.setHeaderText("Write address");
@@ -86,7 +84,7 @@ public class CheckOutController {
             DAO.instance().addData(online);
             DAO.cart.clear();
 
-            Parent root = null;
+            Parent root;
 
             try {
                 root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("main-view.fxml")));
@@ -99,7 +97,7 @@ public class CheckOutController {
         });
     }
 
-    public void onDoneOffline(ActionEvent actionEvent) {
+    public void onDoneOffline() {
         var stores = DAO.instance().runCustomQuery(Store.class, "SELECT * FROM BOOK_STORE_STORE").toArray(new Store[0]);
         ChoiceDialog<Store> d = new ChoiceDialog<>(stores[1], stores);
 
@@ -135,12 +133,11 @@ public class CheckOutController {
 
             offline.setStore(s);
             offline.setPurchase(purchase);
-            offline.setPlace(s.getPlace());
 
             DAO.instance().addData(offline);
             DAO.cart.clear();
 
-            Parent root = null;
+            Parent root;
 
             try {
                 root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("main-view.fxml")));
@@ -153,8 +150,8 @@ public class CheckOutController {
         });
     }
 
-    public void onCancel(ActionEvent actionEvent) {
-        Parent root = null;
+    public void onCancel() {
+        Parent root;
 
         try {
             root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("main-view.fxml")));
@@ -206,6 +203,9 @@ public class CheckOutController {
                         btn.setOnAction((ActionEvent event) -> {
                             Product data1 = getTableView().getItems().get(getIndex());
                             cartArray.add(data1);
+
+                            DAO.cart.put(data1.getId(), DAO.cart.get(data1.getId()) + 1);
+
                             generateTable(cartArray);
                         });
                     }
@@ -239,9 +239,14 @@ public class CheckOutController {
                         btn.setOnAction((ActionEvent event) -> {
                             Product data1 = getTableView().getItems().get(getIndex());
                             cartArray.remove(data1);
+                            DAO.cart.put(data1.getId(), DAO.cart.get(data1.getId()) - 1);
+
+                            if (DAO.cart.get(data1.getId()) <= 0) {
+                                DAO.cart.remove(data1.getId());
+                            }
 
                             if (cartArray.size() == 0) {
-                                Parent root = null;
+                                Parent root;
 
                                 try {
                                     root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("main-view.fxml")));

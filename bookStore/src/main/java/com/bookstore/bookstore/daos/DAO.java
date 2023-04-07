@@ -53,7 +53,7 @@ public class DAO {
     }
 
     public int addData(Object obj) {
-        int id = -1;
+        int id;
         // TODO MAYBE error check
         Session session = this.sessionFactory.openSession();
         Transaction t = session.beginTransaction();
@@ -133,5 +133,17 @@ public class DAO {
         if (this.sessionFactory.isOpen()) {
             this.sessionFactory.close();
         }
+    }
+
+    public ArrayList<Product> searchProduct(String text) {
+        Session session = this.sessionFactory.openSession();
+        Transaction t = session.beginTransaction();
+
+        ArrayList<Product> results = (ArrayList<Product>) session.createNativeQuery("SELECT * FROM BOOK_STORE_PRODUCT WHERE LOWER(name) LIKE ?", Product.class).setParameter(1, "%" + text.toLowerCase() + "%").list();
+
+        t.commit();
+        session.close();
+
+        return results;
     }
 }

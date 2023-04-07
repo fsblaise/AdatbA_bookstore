@@ -25,6 +25,7 @@ public class Purchase {
     private int price;
     @Column(length = 1)
     private int review;
+
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;

@@ -16,14 +16,12 @@ public class Offline {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(length = 10)
     private int id;
-    @Column(length = 100)
-    private String place;
 
     @OneToOne
     @JoinColumn(name = "purchase_id", referencedColumnName = "id")
     private Purchase purchase;
 
     @OneToOne
-    @JoinColumn(name = "store_id", referencedColumnName = "place")
+    @JoinColumn(name = "store_id", referencedColumnName = "id")
     private Store store;
 }

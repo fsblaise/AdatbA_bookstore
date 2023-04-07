@@ -15,11 +15,19 @@ import javax.persistence.*;
 public class Stock {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(length = 5)
-    private int name;
+    @Column(length = 10)
+    private int id;
     @Column(length = 4)
     private int capacity;
     @Column(length = 3)
     private int sum;
     private int isLow;
+
+    @ManyToOne
+    @JoinColumn(name = "store_id", referencedColumnName = "id")
+    private Store store;
+
+    @ManyToOne
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    private Product product;
 }
