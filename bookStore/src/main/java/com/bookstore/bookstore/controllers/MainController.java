@@ -100,7 +100,7 @@ public class MainController {
     @FXML
     public void onProductsButtonClick() {
         if (data == null)
-            data = DAO.instance().runCustomQuery(Product.class, "SELECT * FROM BOOK_STORE_PRODUCT ORDER BY production DESC, review DESC");
+            data = DAO.instance().runCustomQuery(Product.class, "SELECT * FROM BOOK_STORE_PRODUCT ORDER BY id ASC, production DESC, review DESC");
         this.generateList(data);
     }
 
