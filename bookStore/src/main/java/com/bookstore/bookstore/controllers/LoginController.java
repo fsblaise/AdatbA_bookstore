@@ -2,7 +2,6 @@ package com.bookstore.bookstore.controllers;
 
 import com.bookstore.bookstore.MainApplication;
 import com.bookstore.bookstore.daos.DAO;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,9 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-import lombok.extern.java.Log;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -57,7 +54,7 @@ public class LoginController {
         window.setMaximized(true);
     }
 
-    public void onRegisterButtonClick(ActionEvent actionEvent) throws IOException {
+    public void onRegisterButtonClick() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("register-view.fxml")));
         Stage window = (Stage) welcomeText.getScene().getWindow();
         Scene scene = new Scene(root, 800, 600);

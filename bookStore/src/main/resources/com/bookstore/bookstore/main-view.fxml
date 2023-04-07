@@ -24,7 +24,7 @@
               </Label>
               <Button minWidth="70.0" onAction="#onProductsButtonClick" styleClass="nav-button, raised" text="Browse" />
               <Button minWidth="70.0" styleClass="nav-button, raised" text="Stores" />
-              <Button minWidth="70.0" styleClass="nav-button, raised" text="Basket" />
+              <Button minWidth="70.0" styleClass="nav-button, raised" text="Basket" onAction="#onBasketClicked"/>
               <Button minWidth="70.0" styleClass="nav-button, raised" text="Profile" />
             <TextField onAction="#onSearch" fx:id="searchBar" id="search-bar" maxWidth="-Infinity" minWidth="150.0" prefWidth="300.0"/>
             <Button styleClass="raised" id="logout" minWidth="70.0" onAction="#onLogOutButtonClick" text="Logout" textFill="WHITE">
