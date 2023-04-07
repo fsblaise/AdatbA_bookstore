@@ -87,6 +87,8 @@ public class MainController {
                 button.setGraphic(card);
                 button.setMinSize(200, 230);
                 button.setMaxSize(200, 230);
+                button.getStyleClass().add("card");
+                button.getStyleClass().add("card-effect");
 
                 content.getChildren().add(button);
             }

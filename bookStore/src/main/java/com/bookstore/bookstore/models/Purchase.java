@@ -2,9 +2,10 @@ package com.bookstore.bookstore.models;
 
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.util.*;
 
 @Getter
 @Setter
@@ -29,4 +30,9 @@ public class Purchase {
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
+
+    @ElementCollection
+    @CollectionTable(name = "BOOK_STORE_PURCHASED_PRODUCTS")
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    private List<Integer> products;
 }
