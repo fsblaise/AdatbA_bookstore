@@ -12,7 +12,6 @@ import java.util.logging.Level;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.WARNING);
         SSHConnector sshConnector;
 
         try {
@@ -35,6 +34,7 @@ public class MainApplication extends Application {
     }
 
     public static void main(String[] args) {
+        java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.WARNING);
         launch();
     }
 }

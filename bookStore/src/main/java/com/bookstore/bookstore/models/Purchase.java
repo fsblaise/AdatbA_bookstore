@@ -31,7 +31,7 @@ public class Purchase {
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "BOOK_STORE_PURCHASED_PRODUCTS")
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private List<Integer> products;
