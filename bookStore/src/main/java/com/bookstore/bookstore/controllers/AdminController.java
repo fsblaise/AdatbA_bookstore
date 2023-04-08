@@ -3,8 +3,6 @@ package com.bookstore.bookstore.controllers;
 import com.bookstore.bookstore.MainApplication;
 import com.bookstore.bookstore.daos.DAO;
 import com.bookstore.bookstore.models.*;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -39,40 +37,41 @@ public class AdminController {
 
         TextField name = new TextField();
         name.setLayoutY(150);
+
         TextField genre = new TextField();
         genre.setLayoutY(200);
+
         TextField type = new TextField();
         type.setLayoutY(250);
+
         TextField production = new TextField();
         production.setLayoutY(300);
+
         Button done = new Button();
         done.setText("done");
         done.setLayoutY(350);
-        done.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                String nameString = name.getText();
-                String genreString = genre.getText();
-                String typeString = type.getText();
-                String productionString = production.getText();
+        done.setOnAction(actionEvent -> {
+            String nameString = name.getText();
+            String genreString = genre.getText();
+            String typeString = type.getText();
+            String productionString = production.getText();
 
-                if (nameString.isEmpty() || genreString.isEmpty() || typeString.isEmpty() || productionString.isEmpty()) {
-                    // TODO Error
-                    return;
-                }
-
-                Product product = new Product();
-                product.setName(nameString);
-                product.setGenre(genreString);
-                product.setType(typeString);
-                product.setProduction(productionString);
-                product.setReview(0);
-
-                DAO.instance().addData(product);
-
-                content.getChildren().removeAll(items);
-                items = null;
+            if (nameString.isEmpty() || genreString.isEmpty() || typeString.isEmpty() || productionString.isEmpty()) {
+                // TODO Error
+                return;
             }
+
+            Product product = new Product();
+            product.setName(nameString);
+            product.setGenre(genreString);
+            product.setType(typeString);
+            product.setProduction(productionString);
+            product.setReview(0);
+
+            DAO.instance().addData(product);
+
+            content.getChildren().removeAll(items);
+            items = null;
         });
 
         items.add(name);
@@ -85,7 +84,7 @@ public class AdminController {
     }
 
     @FXML
-    protected void onAddStore() throws IOException {
+    protected void onAddStore() {
         if (items != null) {
             content.getChildren().removeAll(items);
         }
@@ -95,32 +94,31 @@ public class AdminController {
 
         TextField place = new TextField();
         place.setLayoutY(150);
+
         TextField capacity = new TextField();
         capacity.setLayoutY(200);
+
         Button done = new Button();
         done.setText("done");
         done.setLayoutY(250);
-        done.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                String placeString = place.getText();
-                int capacityInt = Integer.parseInt(capacity.getText());
+        done.setOnAction(actionEvent -> {
+            String placeString = place.getText();
+            int capacityInt = Integer.parseInt(capacity.getText());
 
-                if (placeString.isEmpty()) {
-                    // TODO Error
-                    return;
-                }
-
-                Store store = new Store();
-                store.setPlace(placeString);
-                store.setCapacity(capacityInt);
-                store.setType("fizikai");
-
-                DAO.instance().addData(store);
-
-                content.getChildren().removeAll(items);
-                items = null;
+            if (placeString.isEmpty()) {
+                // TODO Error
+                return;
             }
+
+            Store store = new Store();
+            store.setPlace(placeString);
+            store.setCapacity(capacityInt);
+            store.setType("fizikai");
+
+            DAO.instance().addData(store);
+
+            content.getChildren().removeAll(items);
+            items = null;
         });
 
         items.add(place);
@@ -151,41 +149,42 @@ public class AdminController {
         TextField name = new TextField();
         name.setText(product.getName());
         name.setLayoutY(150);
+
         TextField genre = new TextField();
         genre.setText(product.getGenre());
         genre.setLayoutY(200);
+
         TextField type = new TextField();
         type.setText(product.getType());
         type.setLayoutY(250);
+
         TextField production = new TextField();
         production.setText(product.getProduction());
         production.setLayoutY(300);
+
         Button done = new Button();
         done.setText("done");
         done.setLayoutY(350);
-        done.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                String nameString = name.getText();
-                String genreString = genre.getText();
-                String typeString = type.getText();
-                String productionString = production.getText();
+        done.setOnAction(actionEvent -> {
+            String nameString = name.getText();
+            String genreString = genre.getText();
+            String typeString = type.getText();
+            String productionString = production.getText();
 
-                if (nameString.isEmpty() || genreString.isEmpty() || typeString.isEmpty() || productionString.isEmpty()) {
-                    // TODO Error
-                    return;
-                }
-
-                product.setName(nameString);
-                product.setGenre(genreString);
-                product.setType(typeString);
-                product.setProduction(productionString);
-
-                DAO.instance().updateData(product);
-
-                content.getChildren().removeAll(items);
-                items = null;
+            if (nameString.isEmpty() || genreString.isEmpty() || typeString.isEmpty() || productionString.isEmpty()) {
+                // TODO Error
+                return;
             }
+
+            product.setName(nameString);
+            product.setGenre(genreString);
+            product.setType(typeString);
+            product.setProduction(productionString);
+
+            DAO.instance().updateData(product);
+
+            content.getChildren().removeAll(items);
+            items = null;
         });
 
         items.add(name);
@@ -198,7 +197,7 @@ public class AdminController {
     }
 
     @FXML
-    protected void onModifyStore() throws IOException {
+    protected void onModifyStore() {
         String result = getDataFromDialog();
 
         if (result.isEmpty()) {
@@ -218,31 +217,30 @@ public class AdminController {
         TextField place = new TextField();
         place.setText(store.getPlace());
         place.setLayoutY(150);
+
         TextField capacity = new TextField();
         capacity.setText(String.valueOf(store.getCapacity()));
         capacity.setLayoutY(200);
+
         Button done = new Button();
         done.setText("done");
         done.setLayoutY(250);
-        done.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                String placeString = place.getText();
-                int capacityInt = Integer.parseInt(capacity.getText());
+        done.setOnAction(actionEvent -> {
+            String placeString = place.getText();
+            int capacityInt = Integer.parseInt(capacity.getText());
 
-                if (placeString.isEmpty()) {
-                    // TODO Error
-                    return;
-                }
-
-                store.setPlace(placeString);
-                store.setCapacity(capacityInt);
-
-                DAO.instance().updateData(store);
-
-                content.getChildren().removeAll(items);
-                items = null;
+            if (placeString.isEmpty()) {
+                // TODO Error
+                return;
             }
+
+            store.setPlace(placeString);
+            store.setCapacity(capacityInt);
+
+            DAO.instance().updateData(store);
+
+            content.getChildren().removeAll(items);
+            items = null;
         });
 
         items.add(place);
@@ -315,22 +313,22 @@ public class AdminController {
         content.getChildren().addAll(items);
     }
 
-    public void onUsersButtonClick(ActionEvent actionEvent) {
+    public void onUsersButtonClick() {
         ArrayList<User> data = DAO.instance().runCustomQuery(User.class, "SELECT * FROM BOOK_STORE_USERS");
         this.generateTable(data);
     }
 
-    public void onProductsButtonClick(ActionEvent actionEvent) {
+    public void onProductsButtonClick() {
         ArrayList<Product> data = DAO.instance().runCustomQuery(Product.class, "SELECT * FROM BOOK_STORE_PRODUCT");
         this.generateTable(data);
     }
 
-    public void onPurchasesButtonClick(ActionEvent actionEvent) {
+    public void onPurchasesButtonClick() {
         ArrayList<Purchase> data = DAO.instance().runCustomQuery(Purchase.class, "SELECT * FROM BOOK_STORE_PURCHASE");
         this.generateTable(data);
     }
 
-    public void onStoresButtonClick(ActionEvent actionEvent) {
+    public void onStoresButtonClick() {
         ArrayList<Store> data = DAO.instance().runCustomQuery(Store.class, "SELECT * FROM BOOK_STORE_STORE");
         this.generateTable(data);
     }
@@ -351,14 +349,18 @@ public class AdminController {
 
         TextField sum = new TextField();
         sum.setLayoutY(150);
+
         TextField capacity = new TextField();
         capacity.setLayoutY(200);
+
         ComboBox<Store> stores = new ComboBox<>();
         stores.getItems().addAll(DAO.instance().runCustomQuery(Store.class, "SELECT * FROM BOOK_STORE_STORE"));
         stores.setLayoutY(250);
+
         ComboBox<Product> product = new ComboBox<>();
         product.getItems().addAll(DAO.instance().runCustomQuery(Product.class, "SELECT * FROM BOOK_STORE_PRODUCT"));
         product.setLayoutY(300);
+
         Button done = new Button();
         done.setText("done");
         done.setLayoutY(350);
@@ -366,7 +368,6 @@ public class AdminController {
             int sumInt = Integer.parseInt(sum.getText());
             int capacityInt = Integer.parseInt(capacity.getText());
             Store store = stores.getSelectionModel().getSelectedItem();
-
             Stock stock = new Stock();
 
             stock.setSum(sumInt);
@@ -410,21 +411,26 @@ public class AdminController {
         TextField sum = new TextField();
         sum.setText(String.valueOf(stock.getSum()));
         sum.setLayoutY(150);
+
         TextField capacity = new TextField();
         capacity.setText(String.valueOf(stock.getCapacity()));
         capacity.setLayoutY(200);
-        ComboBox<Store> stores = new ComboBox<Store>();
+
+        ComboBox<Store> stores = new ComboBox<>();
         stores.getItems().addAll(DAO.instance().runCustomQuery(Store.class, "SELECT * FROM BOOK_STORE_STORE"));
         stores.getSelectionModel().select(stock.getStore());
         stores.setLayoutY(250);
+
         TextField product = new TextField();
         product.setText(stock.getProduct().getName());
         product.setDisable(true);
         product.setLayoutY(300);
+
         CheckBox isLow = new CheckBox();
         isLow.setSelected(stock.getIsLow() == 1);
         isLow.setDisable(true);
         isLow.setLayoutY(350);
+
         Button done = new Button();
         done.setText("done");
         done.setLayoutY(400);

@@ -221,5 +221,6 @@ public class MainController {
         Stage window = (Stage) welcomeText.getScene().getWindow();
         Scene scene = new Scene(root, 800, 600);
         window.setScene(scene);
+        window.setMaximized(true);
     }
 }
