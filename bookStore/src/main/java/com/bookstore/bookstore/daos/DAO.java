@@ -11,6 +11,7 @@ import org.hibernate.cfg.Configuration;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class DAO {
     @Getter
@@ -135,11 +136,77 @@ public class DAO {
         }
     }
 
-    public ArrayList<Product> searchProduct(String text) {
+    public ArrayList<Product> searchProduct(String text, String opt) {
         Session session = this.sessionFactory.openSession();
         Transaction t = session.beginTransaction();
 
-        ArrayList<Product> results = (ArrayList<Product>) session.createNativeQuery("SELECT * FROM BOOK_STORE_PRODUCT WHERE LOWER(name) LIKE ?", Product.class).setParameter(1, "%" + text.toLowerCase() + "%").list();
+        String sql;
+        switch (opt) {
+            case "Title": sql = "SELECT * FROM BOOK_STORE_PRODUCT WHERE LOWER(name) LIKE ?"; break;
+            case "Publication Year": sql = "SELECT * FROM BOOK_STORE_PRODUCT WHERE production LIKE ?"; break;
+            default: sql = "SELECT * FROM BOOK_STORE_PRODUCT WHERE LOWER(name) LIKE ?"; break;
+        }
+        ArrayList<Product> results = (ArrayList<Product>) session.createNativeQuery(sql, Product.class).setParameter(1, "%" + text.toLowerCase() + "%").list();
+
+        t.commit();
+        session.close();
+
+        return results;
+    }
+
+    public List listTypes(){
+        Session session = this.sessionFactory.openSession();
+        Transaction t = session.beginTransaction();
+
+        List results = session.createNativeQuery("SELECT type, Count(type) FROM BOOK_STORE_PRODUCT GROUP BY type").list();
+
+        t.commit();
+        session.close();
+
+        return results;
+    }
+
+    public List listGenres(){
+        Session session = this.sessionFactory.openSession();
+        Transaction t = session.beginTransaction();
+
+        List results = session.createNativeQuery("SELECT genre, Count(genre) FROM BOOK_STORE_PRODUCT GROUP BY genre").list();
+
+        t.commit();
+        session.close();
+
+        return results;
+    }
+
+    public ArrayList<Product> getAllByGenre(String genre){
+        Session session = this.sessionFactory.openSession();
+        Transaction t = session.beginTransaction();
+
+        ArrayList<Product> results = (ArrayList<Product>) session.createNativeQuery("SELECT * FROM BOOK_STORE_PRODUCT WHERE LOWER(genre) LIKE ?", Product.class).setParameter(1, "%" + genre.toLowerCase() + "%").list();
+
+        t.commit();
+        session.close();
+
+        return results;
+    }
+
+    public List listStores(){
+        Session session = this.sessionFactory.openSession();
+        Transaction t = session.beginTransaction();
+
+        List results = session.createNativeQuery("Select book_store_store.place, book_store_stock.SUM FROM book_store_store, book_store_stock WHERE book_store_store.id = book_store_stock.store_id").list();
+
+        t.commit();
+        session.close();
+
+        return results;
+    }
+
+    public ArrayList<Product> getAllByStore(String place){
+        Session session = this.sessionFactory.openSession();
+        Transaction t = session.beginTransaction();
+
+        ArrayList<Product> results = (ArrayList<Product>) session.createNativeQuery("SELECT * FROM BOOK_STORE_PRODUCT, BOOK_STORE_STORE, BOOK_STORE_STOCK WHERE book_store_store.id = book_store_stock.store_id and book_store_stock.product_id = book_store_product.id and LOWER(place) LIKE ?", Product.class).setParameter(1, "%" + place.toLowerCase() + "%").list();
 
         t.commit();
         session.close();
