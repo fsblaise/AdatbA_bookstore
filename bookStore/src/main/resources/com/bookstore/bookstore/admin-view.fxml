@@ -3,8 +3,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
+<?import java.net.URL?>
 <AnchorPane fx:id="content" prefHeight="400.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/19"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.AdminController">
+    <stylesheets>
+        <URL value="@css/admin.css"/>
+    </stylesheets>
     <Button fx:id="addProduct" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAddProduct"
             text="Add Product"/>
     <Button layoutX="149.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAddStore" text="Add Store"/>

@@ -3,15 +3,14 @@ package com.bookstore.bookstore.daos;
 import com.bookstore.bookstore.models.*;
 import lombok.Getter;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 import static org.hibernate.type.StandardBasicTypes.INTEGER;
 
 public class DAO {
@@ -107,7 +106,7 @@ public class DAO {
         Session session = this.sessionFactory.openSession();
         Transaction t = session.beginTransaction();
 
-        SQLQuery query = session.createNativeQuery(sql);
+        SQLQuery query = session.createNativeQuery(sql).setCacheable(true).setCacheMode(CacheMode.NORMAL);
         query.addEntity(entityClass);
         ArrayList<T> results = (ArrayList<T>) query.list();
 
@@ -143,9 +142,15 @@ public class DAO {
 
         String sql;
         switch (opt) {
-            case "Title": sql = "SELECT * FROM BOOK_STORE_PRODUCT WHERE LOWER(name) LIKE ?"; break;
-            case "Publication Year": sql = "SELECT * FROM BOOK_STORE_PRODUCT WHERE production LIKE ?"; break;
-            default: sql = "SELECT * FROM BOOK_STORE_PRODUCT WHERE LOWER(name) LIKE ?"; break;
+            case "Title":
+                sql = "SELECT * FROM BOOK_STORE_PRODUCT WHERE LOWER(name) LIKE ?";
+                break;
+            case "Publication Year":
+                sql = "SELECT * FROM BOOK_STORE_PRODUCT WHERE production LIKE ?";
+                break;
+            default:
+                sql = "SELECT * FROM BOOK_STORE_PRODUCT WHERE LOWER(name) LIKE ?";
+                break;
         }
         ArrayList<Product> results = (ArrayList<Product>) session.createNativeQuery(sql, Product.class).setParameter(1, "%" + text.toLowerCase() + "%").list();
 
@@ -155,11 +160,11 @@ public class DAO {
         return results;
     }
 
-    public List listTypes(){
+    public List listTypes() {
         Session session = this.sessionFactory.openSession();
         Transaction t = session.beginTransaction();
 
-        List results = session.createNativeQuery("SELECT type, Count(type) FROM BOOK_STORE_PRODUCT GROUP BY type").list();
+        List results = session.createNativeQuery("SELECT type, Count(type) FROM BOOK_STORE_PRODUCT GROUP BY type").setCacheable(true).setCacheMode(CacheMode.NORMAL).list();
 
         t.commit();
         session.close();
@@ -167,11 +172,11 @@ public class DAO {
         return results;
     }
 
-    public List listGenres(){
+    public List listGenres() {
         Session session = this.sessionFactory.openSession();
         Transaction t = session.beginTransaction();
 
-        List results = session.createNativeQuery("SELECT genre, Count(genre) FROM BOOK_STORE_PRODUCT GROUP BY genre").list();
+        List results = session.createNativeQuery("SELECT genre, Count(genre) FROM BOOK_STORE_PRODUCT GROUP BY genre").setCacheable(true).setCacheMode(CacheMode.NORMAL).list();
 
         t.commit();
         session.close();
@@ -179,7 +184,7 @@ public class DAO {
         return results;
     }
 
-    public ArrayList<Product> getAllByGenre(String genre){
+    public ArrayList<Product> getAllByGenre(String genre) {
         Session session = this.sessionFactory.openSession();
         Transaction t = session.beginTransaction();
 
@@ -191,11 +196,11 @@ public class DAO {
         return results;
     }
 
-    public List listStores(){
+    public List listStores() {
         Session session = this.sessionFactory.openSession();
         Transaction t = session.beginTransaction();
 
-        List results = session.createNativeQuery("Select book_store_store.place, book_store_stock.SUM FROM book_store_store, book_store_stock WHERE book_store_store.id = book_store_stock.store_id").list();
+        List results = session.createNativeQuery("Select book_store_store.place, book_store_stock.SUM FROM book_store_store, book_store_stock WHERE book_store_store.id = book_store_stock.store_id").setCacheable(true).setCacheMode(CacheMode.NORMAL).list();
 
         t.commit();
         session.close();
@@ -203,7 +208,7 @@ public class DAO {
         return results;
     }
 
-    public ArrayList<Product> getAllByStore(String place){
+    public ArrayList<Product> getAllByStore(String place) {
         Session session = this.sessionFactory.openSession();
         Transaction t = session.beginTransaction();
 
@@ -240,5 +245,51 @@ public class DAO {
         session.close();
 
         return results;
+    }
+
+    public Purchase addPurchaseToViewAndGet(Purchase purchase) throws InterruptedException {
+        var items = purchase.getProducts();
+        Session session = this.sessionFactory.openSession();
+        Transaction t = session.beginTransaction();
+
+        session.createNativeQuery("INSERT INTO BOOK_STORE_VW_PURCHASE(dateofpurchase, price, review, user_id) VALUES (?,?,?,?)")
+                .setDate(1, purchase.getDateOfPurchase())
+                .setParameter(2, purchase.getPrice())
+                .setParameter(3, purchase.getReview())
+                .setParameter(4, purchase.getUser().getId()).setHibernateFlushMode(FlushMode.ALWAYS).executeUpdate();
+
+        t.commit();
+        session.close();
+
+        TimeUnit.MILLISECONDS.sleep(1000); //TODO: Maybe change this i don't know pleas god send us help
+
+        session = this.sessionFactory.openSession();
+        t = session.beginTransaction();
+
+        ArrayList<Purchase> purchases = (ArrayList<Purchase>) session.createNativeQuery("SELECT * FROM BOOK_STORE_PURCHASE WHERE DATEOFPURCHASE = ?", Purchase.class).setDate(1, purchase.getDateOfPurchase()).list();
+        if (purchases.size() == 0) {
+            purchase = null;
+        } else {
+            purchase = purchases.get(0);
+        }
+
+        t.commit();
+        session.close();
+
+        session = this.sessionFactory.openSession();
+        t = session.beginTransaction();
+
+        for (var item : items) {
+            session.createNativeQuery("INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(PURCHASE_ID, PRODUCTS) VALUES (?,?)")
+                    .setParameter(1, purchase.getId())
+                    .setParameter(2, item)
+                    .setHibernateFlushMode(FlushMode.ALWAYS).executeUpdate();
+
+            t.commit();
+        }
+
+        session.close();
+
+        return purchase;
     }
 }

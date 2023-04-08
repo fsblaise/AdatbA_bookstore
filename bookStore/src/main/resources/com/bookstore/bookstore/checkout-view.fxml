@@ -3,10 +3,15 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="content" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.CheckOutController">
-    <Button fx:id="doneOnline" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onDoneOnline" text="Done(online)" />
-    <Button fx:id="doneOffline" layoutX="80.0" layoutY="14.0" mnemonicParsing="false" onAction="#onDoneOffline" text="Done(offline)" />
-    <Button fx:id="cancel" layoutX="131.0" layoutY="14.0" mnemonicParsing="false" onAction="#onCancel" text="Cancel" />
-
-
+<?import java.net.URL?>
+<AnchorPane fx:id="content" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.CheckOutController">
+    <stylesheets>
+        <URL value="@css/checkout.css"/>
+    </stylesheets>
+    <Button fx:id="doneOnline" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onDoneOnline"
+            text="Done(online)"/>
+    <Button fx:id="doneOffline" layoutX="80.0" layoutY="14.0" mnemonicParsing="false" onAction="#onDoneOffline"
+            text="Done(offline)"/>
+    <Button fx:id="cancel" layoutX="131.0" layoutY="14.0" mnemonicParsing="false" onAction="#onCancel" text="Cancel"/>
 </AnchorPane>

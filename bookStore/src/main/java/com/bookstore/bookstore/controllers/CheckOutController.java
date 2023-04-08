@@ -69,7 +69,7 @@ public class CheckOutController {
 
             purchase.setProducts(products);
 
-            TextInputDialog dialog2 = new TextInputDialog("review");
+            TextInputDialog dialog2 = new TextInputDialog("5");
             dialog2.setTitle("review");
             dialog2.setHeaderText("review");
             dialog2.setContentText("review");
@@ -86,7 +86,11 @@ public class CheckOutController {
                 purchase.setReview(0);
             }
 
-            DAO.instance().addData(purchase);
+            try {
+                purchase = DAO.instance().addPurchaseToViewAndGet(purchase);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
 
             Online online = new Online();
 
@@ -107,11 +111,20 @@ public class CheckOutController {
 
             Stage window = (Stage) doneOnline.getScene().getWindow();
             window.setScene(new Scene(root, 700, 500));
+            window.setMaximized(true);
         });
     }
 
     public void onDoneOffline() {
         var stores = DAO.instance().searchStore(DAO.cart.keySet().toArray()).toArray(new Store[0]);
+        if (stores.length == 0) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("The book can't bought in any of our stores");
+            alert.setContentText("Pleas try again later");
+            alert.showAndWait();
+            return;
+        }
         ChoiceDialog<Store> d = new ChoiceDialog<>(stores[0], stores);
 
         Optional<Store> store = d.showAndWait();
@@ -136,10 +149,10 @@ public class CheckOutController {
 
             purchase.setProducts(products);
 
-            TextInputDialog dialog2 = new TextInputDialog("review");
+            TextInputDialog dialog2 = new TextInputDialog("5");
             dialog2.setTitle("review");
             dialog2.setHeaderText("review");
-            dialog2.setContentText("5");
+            dialog2.setContentText("review");
 
             Optional<String> result2 = dialog2.showAndWait();
 
@@ -147,13 +160,17 @@ public class CheckOutController {
                 try {
                     purchase.setReview(Integer.parseInt(result2.get()));
                 } catch (NumberFormatException e) {
-                    purchase.setReview(0);
+                    purchase.setReview(5);
                 }
             } else {
-                purchase.setReview(0);
+                purchase.setReview(5);
             }
 
-            DAO.instance().addData(purchase);
+            try {
+                purchase = DAO.instance().addPurchaseToViewAndGet(purchase);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
 
             Offline offline = new Offline();
 
@@ -173,6 +190,7 @@ public class CheckOutController {
 
             Stage window = (Stage) doneOnline.getScene().getWindow();
             window.setScene(new Scene(root, 700, 500));
+            window.setMaximized(true);
         });
     }
 
@@ -187,6 +205,7 @@ public class CheckOutController {
 
         Stage window = (Stage) doneOnline.getScene().getWindow();
         window.setScene(new Scene(root, 700, 500));
+        window.setMaximized(true);
     }
 
     public void generateTable(ArrayList<Product> data) {
@@ -282,6 +301,7 @@ public class CheckOutController {
 
                                 Stage window = (Stage) doneOnline.getScene().getWindow();
                                 window.setScene(new Scene(root, 700, 500));
+                                window.setMaximized(true);
                                 return;
                             }
 
@@ -303,11 +323,8 @@ public class CheckOutController {
         };
 
         deleteButton.setCellFactory(deleteCellFactory);
-
         dataTable.getColumns().add(deleteButton);
-
         items.add(dataTable);
-
         content.getChildren().addAll(items);
     }
 }
