@@ -12,6 +12,7 @@ import org.hibernate.cfg.Configuration;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import static org.hibernate.type.StandardBasicTypes.INTEGER;
 
 public class DAO {
     @Getter
@@ -207,6 +208,33 @@ public class DAO {
         Transaction t = session.beginTransaction();
 
         ArrayList<Product> results = (ArrayList<Product>) session.createNativeQuery("SELECT * FROM BOOK_STORE_PRODUCT, BOOK_STORE_STORE, BOOK_STORE_STOCK WHERE book_store_store.id = book_store_stock.store_id and book_store_stock.product_id = book_store_product.id and LOWER(place) LIKE ?", Product.class).setParameter(1, "%" + place.toLowerCase() + "%").list();
+
+        t.commit();
+        session.close();
+
+        return results;
+    }
+
+    public ArrayList<Store> searchStore(Object[] products) {
+        Session session = this.sessionFactory.openSession();
+        Transaction t = session.beginTransaction();
+
+        ArrayList<Store> results = new ArrayList<>();
+
+        if (products != null) {
+            for (var object : products) {
+                if (results.isEmpty()) {
+                    results.addAll(session.createNativeQuery("SELECT store.ID, store.PLACE, store.CAPACITY, store.TYPE FROM BOOK_STORE_STOCK store2 inner join BOOK_STORE_STORE store ON store.ID = store2.STORE_ID WHERE PRODUCT_ID = ?", Store.class).setParameter(1, object).list());
+                } else {
+                    var tmp = (ArrayList<Store>) session.createNativeQuery("SELECT store.ID, store.PLACE, store.CAPACITY, store.TYPE FROM BOOK_STORE_STOCK store2 inner join BOOK_STORE_STORE store ON store.ID = store2.STORE_ID WHERE PRODUCT_ID = ?", Store.class).setParameter(1, object).list();
+                    for (var store : tmp) {
+                        if (!results.contains(store)) {
+                            results.remove(store);
+                        }
+                    }
+                }
+            }
+        }
 
         t.commit();
         session.close();

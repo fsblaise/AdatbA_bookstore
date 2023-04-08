@@ -2,10 +2,7 @@ package com.bookstore.bookstore.controllers;
 
 import com.bookstore.bookstore.MainApplication;
 import com.bookstore.bookstore.daos.DAO;
-import com.bookstore.bookstore.models.Product;
-import com.bookstore.bookstore.models.Purchase;
-import com.bookstore.bookstore.models.Store;
-import com.bookstore.bookstore.models.User;
+import com.bookstore.bookstore.models.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -31,7 +28,7 @@ public class AdminController {
     private TableColumn[] columns;
 
     @FXML
-    protected void onAddProduct() throws IOException {
+    protected void onAddProduct() {
         if (items != null) {
             content.getChildren().removeAll(items);
         }
@@ -342,5 +339,128 @@ public class AdminController {
         Parent root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("login-view.fxml")));
         Stage window = (Stage) addProduct.getScene().getWindow();
         window.setScene(new Scene(root, 700, 500));
+    }
+
+    public void onAddStock() {
+        if (items != null) {
+            content.getChildren().removeAll(items);
+        }
+
+        items = new ArrayList<>();
+        //TODO: labels
+
+        TextField sum = new TextField();
+        sum.setLayoutY(150);
+        TextField capacity = new TextField();
+        capacity.setLayoutY(200);
+        ComboBox<Store> stores = new ComboBox<>();
+        stores.getItems().addAll(DAO.instance().runCustomQuery(Store.class, "SELECT * FROM BOOK_STORE_STORE"));
+        stores.setLayoutY(250);
+        ComboBox<Product> product = new ComboBox<>();
+        product.getItems().addAll(DAO.instance().runCustomQuery(Product.class, "SELECT * FROM BOOK_STORE_PRODUCT"));
+        product.setLayoutY(300);
+        Button done = new Button();
+        done.setText("done");
+        done.setLayoutY(350);
+        done.setOnAction(actionEvent -> {
+            int sumInt = Integer.parseInt(sum.getText());
+            int capacityInt = Integer.parseInt(capacity.getText());
+            Store store = stores.getSelectionModel().getSelectedItem();
+
+            Stock stock = new Stock();
+
+            stock.setSum(sumInt);
+            stock.setCapacity(capacityInt);
+            stock.setStore(store);
+            stock.setProduct(product.getSelectionModel().getSelectedItem());
+            stock.setIsLow(0);
+
+            DAO.instance().addData(stock);
+
+            content.getChildren().removeAll(items);
+            items = null;
+        });
+
+        items.add(sum);
+        items.add(capacity);
+        items.add(stores);
+        items.add(product);
+        items.add(done);
+
+        content.getChildren().addAll(items);
+    }
+
+    public void onModifyStock() {
+        String result = getDataFromDialog();
+
+        if (result.isEmpty()) {
+            // TODO: error
+            return;
+        }
+
+        Stock stock = DAO.instance().getDataByID(Stock.class, Integer.parseInt(result));
+
+        if (items != null) {
+            content.getChildren().removeAll(items);
+        }
+
+        items = new ArrayList<>();
+
+        //TODO: labels
+        TextField sum = new TextField();
+        sum.setText(String.valueOf(stock.getSum()));
+        sum.setLayoutY(150);
+        TextField capacity = new TextField();
+        capacity.setText(String.valueOf(stock.getCapacity()));
+        capacity.setLayoutY(200);
+        ComboBox<Store> stores = new ComboBox<Store>();
+        stores.getItems().addAll(DAO.instance().runCustomQuery(Store.class, "SELECT * FROM BOOK_STORE_STORE"));
+        stores.getSelectionModel().select(stock.getStore());
+        stores.setLayoutY(250);
+        TextField product = new TextField();
+        product.setText(stock.getProduct().getName());
+        product.setDisable(true);
+        product.setLayoutY(300);
+        CheckBox isLow = new CheckBox();
+        isLow.setSelected(stock.getIsLow() == 1);
+        isLow.setDisable(true);
+        isLow.setLayoutY(350);
+        Button done = new Button();
+        done.setText("done");
+        done.setLayoutY(400);
+        done.setOnAction(actionEvent -> {
+            int sumInt = Integer.parseInt(sum.getText());
+            int capacityInt = Integer.parseInt(capacity.getText());
+            Store store = stores.getSelectionModel().getSelectedItem();
+
+            stock.setSum(sumInt);
+            stock.setCapacity(capacityInt);
+            stock.setStore(store);
+
+            DAO.instance().updateData(stock);
+
+            content.getChildren().removeAll(items);
+            items = null;
+        });
+
+        items.add(sum);
+        items.add(capacity);
+        items.add(stores);
+        items.add(product);
+        items.add(isLow);
+        items.add(done);
+
+        content.getChildren().addAll(items);
+    }
+
+    public void onDeleteStock() {
+        String idString = getDataFromDialog();
+
+        if (idString.isEmpty()) {
+            //TODO error
+            return;
+        }
+
+        DAO.instance().deleteData(DAO.instance().getDataByID(Stock.class, Integer.parseInt(idString)));
     }
 }

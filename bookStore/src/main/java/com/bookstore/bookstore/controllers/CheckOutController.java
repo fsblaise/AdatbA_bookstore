@@ -56,6 +56,19 @@ public class CheckOutController {
             purchase.setUser(DAO.getCurrentUser());
             purchase.setPrice(1000);
 
+            ArrayList<Integer> products = new ArrayList<>();
+
+            var cart = DAO.getCart();
+
+            for (var key : cart.keySet()) {
+                Product product = DAO.instance().getDataByID(Product.class, key);
+                for (int i = 0; i < cart.get(key); i++) {
+                    products.add(product.getId());
+                }
+            }
+
+            purchase.setProducts(products);
+
             TextInputDialog dialog2 = new TextInputDialog("review");
             dialog2.setTitle("review");
             dialog2.setHeaderText("review");
@@ -98,8 +111,8 @@ public class CheckOutController {
     }
 
     public void onDoneOffline() {
-        var stores = DAO.instance().runCustomQuery(Store.class, "SELECT * FROM BOOK_STORE_STORE").toArray(new Store[0]);
-        ChoiceDialog<Store> d = new ChoiceDialog<>(stores[1], stores);
+        var stores = DAO.instance().searchStore(DAO.cart.keySet().toArray()).toArray(new Store[0]);
+        ChoiceDialog<Store> d = new ChoiceDialog<>(stores[0], stores);
 
         Optional<Store> store = d.showAndWait();
 
@@ -109,6 +122,19 @@ public class CheckOutController {
             purchase.setDateOfPurchase(date);
             purchase.setUser(DAO.getCurrentUser());
             purchase.setPrice(1000);
+
+            ArrayList<Integer> products = new ArrayList<>();
+
+            var cart = DAO.getCart();
+
+            for (var key : cart.keySet()) {
+                Product product = DAO.instance().getDataByID(Product.class, key);
+                for (int i = 0; i < cart.get(key); i++) {
+                    products.add(product.getId());
+                }
+            }
+
+            purchase.setProducts(products);
 
             TextInputDialog dialog2 = new TextInputDialog("review");
             dialog2.setTitle("review");
