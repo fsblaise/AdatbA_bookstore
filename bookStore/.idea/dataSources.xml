@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="@orania2.inf.u-szeged.hu" uuid="c125daf7-1d16-47e6-b62e-ff9a97418972">
+    <data-source source="LOCAL" name="@orania2.inf.u-szeged.hu" check-outdated="false" uuid="c125daf7-1d16-47e6-b62e-ff9a97418972">
       <driver-ref>oracle.19</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
