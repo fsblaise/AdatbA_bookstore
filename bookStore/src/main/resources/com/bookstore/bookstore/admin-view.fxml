@@ -21,6 +21,7 @@
     <Button layoutX="664.0" layoutY="14.0" onAction="#onProductsButtonClick" text="Products"/>
     <Button layoutX="664.0" layoutY="93.0" onAction="#onPurchasesButtonClick" text="Purchases"/>
     <Button layoutX="664.0" layoutY="52.0" onAction="#onStoresButtonClick" text="Stores"/>
+    <Button layoutX="664.0" layoutY="180.0" onAction="#onStocksButtonClick" text="Stocks"/>
     <Button layoutX="275.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAddStock" text="Add Stock"/>
     <Button layoutX="275.0" layoutY="52.0" mnemonicParsing="false" onAction="#onModifyStock" text="Modify Stock"/>
     <Button layoutX="276.0" layoutY="93.0" mnemonicParsing="false" onAction="#onDeleteStock" text="Delete Stock"/>
