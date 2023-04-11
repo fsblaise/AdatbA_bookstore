@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -21,7 +22,7 @@ import java.util.*;
 
 public class CheckOutController {
     @FXML
-    private AnchorPane content;
+    private BorderPane content;
     @FXML
     private Button doneOnline;
     private List<Node> items;
@@ -326,5 +327,14 @@ public class CheckOutController {
         dataTable.getColumns().add(deleteButton);
         items.add(dataTable);
         content.getChildren().addAll(items);
+    }
+
+    public void onBasketClicked(ActionEvent actionEvent) {
+    }
+
+    public void onProductsButtonClick(ActionEvent actionEvent) {
+    }
+
+    public void onLogOutButtonClick(ActionEvent actionEvent) {
     }
 }

@@ -3,6 +3,7 @@ package com.bookstore.bookstore.controllers;
 import com.bookstore.bookstore.MainApplication;
 import com.bookstore.bookstore.daos.DAO;
 import com.bookstore.bookstore.models.Product;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Orientation;
@@ -218,9 +219,28 @@ public class MainController {
             throw new RuntimeException(e);
         }
 
-        Stage window = (Stage) welcomeText.getScene().getWindow();
-        Scene scene = new Scene(root, 800, 600);
-        window.setScene(scene);
-        window.setMaximized(true);
+        MainApplication.getMainStage().getScene().setRoot(root);
+    }
+
+    public void onProfileClicked(ActionEvent actionEvent) {
+        Parent root;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("profile-view.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        MainApplication.getMainStage().getScene().setRoot(root);
+    }
+
+    public void onStoresClicked(ActionEvent actionEvent) {
+        Parent root;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("stores-view.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        MainApplication.getMainStage().getScene().setRoot(root);
     }
 }

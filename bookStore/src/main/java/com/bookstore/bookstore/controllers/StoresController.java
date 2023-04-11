@@ -2,57 +2,20 @@ package com.bookstore.bookstore.controllers;
 
 import com.bookstore.bookstore.MainApplication;
 import com.bookstore.bookstore.daos.DAO;
-import com.bookstore.bookstore.models.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
 
-public class ProfileController {
-    @FXML
-    private Label welcomeText;
-    @FXML
-    private Label name;
-    @FXML
-    private Label birthday;
-    @FXML
-    private Label email;
-    @FXML
-    private TextField passwordField;
-    @FXML
-    private TextField confirmPasswordField;
-    @FXML
-    private Button submitButton;
-    @FXML
-    private Label purchaseCount;
-    @FXML
-    private Label isRegular;
-    private User user;
-
-    @FXML
-    public void initialize() {
-        onProfileClicked();
-    }
-
-    @FXML
-    public void onProfileClicked() {
-        this.user = DAO.getCurrentUser();
-
-        name.setText(user.getName());
-        birthday.setText(user.getBirthDate().toString());
-        email.setText(user.getEmail());
-        purchaseCount.setText("" + user.getPurchasedProducts());
-        isRegular.setText(user.getIsRegular() ? "Yes" : "No");
-    }
+public class StoresController {
+    public Label welcomeText;
 
     @FXML
     public void onProductsButtonClick(ActionEvent actionEvent) {
@@ -66,7 +29,6 @@ public class ProfileController {
         MainApplication.getMainStage().getScene().setRoot(root);
     }
 
-    @FXML
     public void onBasketClicked() {
         if (DAO.cart.isEmpty()) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -96,24 +58,17 @@ public class ProfileController {
         window.setScene(scene);
     }
 
-    @FXML
     public void onStoresClicked(ActionEvent actionEvent) {
+    }
+
+    public void onProfileClicked(ActionEvent actionEvent) {
         Parent root;
         try {
-            root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("stores-view.fxml")));
+            root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("profile-view.fxml")));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
         MainApplication.getMainStage().getScene().setRoot(root);
-    }
-
-    public void onSubmitClicked() {
-        if (!passwordField.getText().isEmpty() && !confirmPasswordField.getText().isEmpty() && passwordField.getText().equals(confirmPasswordField.getText())) {
-            System.out.println(passwordField.getText());
-            System.out.println(confirmPasswordField.getText());
-        } else {
-            System.out.println("Nem jo vagy nem egyeznek a jelszavak :$");
-        }
     }
 }

@@ -15,7 +15,7 @@
 
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
-<BorderPane prefHeight="784.0" prefWidth="1920.0" stylesheets="css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.MainController">
+<BorderPane stylesheets="css/main.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.MainController">
     <stylesheets>
         <URL value="@css/main.css" />
     </stylesheets>
@@ -27,9 +27,9 @@
                 </font>
             </Label>
             <Button minWidth="70.0" onAction="#onProductsButtonClick" styleClass="nav-button, raised" text="Browse" />
-            <Button minWidth="70.0" styleClass="nav-button, raised" text="Stores" />
+            <Button minWidth="70.0" onAction="#onStoresClicked" styleClass="nav-button, raised" text="Stores" />
             <Button minWidth="70.0" onAction="#onBasketClicked" styleClass="nav-button, raised" text="Basket" />
-            <Button minWidth="70.0" styleClass="nav-button, raised" text="Profile" />
+            <Button minWidth="70.0" onAction="#onProfileClicked" styleClass="nav-button, raised" text="Profile" />
             <Button id="logout" minWidth="70.0" onAction="#onLogOutButtonClick" styleClass="raised" text="Logout" textFill="WHITE">
                 <font>
                     <Font name="System Bold" size="12.0" />

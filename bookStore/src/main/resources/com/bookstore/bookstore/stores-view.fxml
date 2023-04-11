@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.control.Label?>
-<?import javafx.geometry.Insets?>
-<BorderPane fx:id="content" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.CheckOutController">
+
+<?import javafx.scene.shape.SVGPath?>
+<BorderPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.StoresController">
     <stylesheets>
-        <URL value="@css/checkout.css"/>
+        <URL value="@css/stores.css" />
     </stylesheets>
     <top>
         <HBox id="toolbar" alignment="CENTER" prefHeight="50.0" prefWidth="856.0" spacing="20.0" BorderPane.alignment="CENTER">
@@ -20,9 +22,9 @@
                 </font>
             </Label>
             <Button minWidth="70.0" onAction="#onProductsButtonClick" styleClass="nav-button, raised" text="Browse" />
-            <Button minWidth="70.0" styleClass="nav-button, raised" text="Stores" />
+            <Button minWidth="70.0" onAction="#onStoresClicked" styleClass="nav-button, raised" text="Stores" />
             <Button minWidth="70.0" onAction="#onBasketClicked" styleClass="nav-button, raised" text="Basket" />
-            <Button minWidth="70.0" styleClass="nav-button, raised" text="Profile" />
+            <Button minWidth="70.0" onAction="#onProfileClicked" styleClass="nav-button, raised" text="Profile" />
             <Button id="logout" minWidth="70.0" onAction="#onLogOutButtonClick" styleClass="raised" text="Logout" textFill="WHITE">
                 <font>
                     <Font name="System Bold" size="12.0" />
@@ -33,11 +35,4 @@
             </padding>
         </HBox>
     </top>
-    <center>
-        <Button fx:id="doneOnline" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onDoneOnline"
-                text="Done(online)"/>
-        <Button fx:id="doneOffline" layoutX="80.0" layoutY="14.0" mnemonicParsing="false" onAction="#onDoneOffline"
-                text="Done(offline)"/>
-        <Button fx:id="cancel" layoutX="131.0" layoutY="14.0" mnemonicParsing="false" onAction="#onCancel" text="Cancel"/>
-    </center>
 </BorderPane>
