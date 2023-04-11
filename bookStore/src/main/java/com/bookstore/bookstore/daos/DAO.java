@@ -11,8 +11,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import static org.hibernate.type.StandardBasicTypes.INTEGER;
-
 public class DAO {
     @Getter
     private static User currentUser;
@@ -140,19 +138,9 @@ public class DAO {
         Session session = this.sessionFactory.openSession();
         Transaction t = session.beginTransaction();
 
-        String sql;
-        switch (opt) {
-            case "Title":
-                sql = "SELECT * FROM BOOK_STORE_PRODUCT WHERE LOWER(name) LIKE ?";
-                break;
-            case "Publication Year":
-                sql = "SELECT * FROM BOOK_STORE_PRODUCT WHERE production LIKE ?";
-                break;
-            default:
-                sql = "SELECT * FROM BOOK_STORE_PRODUCT WHERE LOWER(name) LIKE ?";
-                break;
-        }
-        ArrayList<Product> results = (ArrayList<Product>) session.createNativeQuery(sql, Product.class).setParameter(1, "%" + text.toLowerCase() + "%").list();
+        ArrayList<Product> results = (ArrayList<Product>) session.createNativeQuery(
+                opt.equals("Publication Year") ? "SELECT * FROM BOOK_STORE_PRODUCT WHERE production LIKE ?" : "SELECT * FROM BOOK_STORE_PRODUCT WHERE LOWER(name) LIKE ?",
+                Product.class).setParameter(1, "%" + text.toLowerCase() + "%").list();
 
         t.commit();
         session.close();
@@ -200,7 +188,7 @@ public class DAO {
         Session session = this.sessionFactory.openSession();
         Transaction t = session.beginTransaction();
 
-        List results = session.createNativeQuery("Select book_store_store.place, book_store_stock.SUM FROM book_store_store, book_store_stock WHERE book_store_store.id = book_store_stock.store_id").setCacheable(true).setCacheMode(CacheMode.NORMAL).list();
+        List results = session.createNativeQuery("Select book_store_store.place FROM book_store_store GROUP BY book_store_store.place").setCacheable(true).setCacheMode(CacheMode.NORMAL).list();
 
         t.commit();
         session.close();
@@ -280,10 +268,12 @@ public class DAO {
         t = session.beginTransaction();
 
         for (var item : items) {
-            session.createNativeQuery("INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(PURCHASE_ID, PRODUCTS) VALUES (?,?)")
-                    .setParameter(1, purchase.getId())
-                    .setParameter(2, item)
-                    .setHibernateFlushMode(FlushMode.ALWAYS).executeUpdate();
+            if (purchase != null) {
+                session.createNativeQuery("INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(PURCHASE_ID, PRODUCTS) VALUES (?,?)")
+                        .setParameter(1, purchase.getId())
+                        .setParameter(2, item)
+                        .setHibernateFlushMode(FlushMode.ALWAYS).executeUpdate();
+            }
 
             t.commit();
         }
