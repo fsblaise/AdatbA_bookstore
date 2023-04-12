@@ -48,7 +48,7 @@
                         <HBox alignment="CENTER" fillHeight="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="190.0" prefHeight="27.0" prefWidth="340.0">
                             <children>
                                 <TextField id="search-bar" fx:id="searchBar" maxWidth="-Infinity" minWidth="150.0" onAction="#onSearch" prefWidth="300.0" />
-                                <Button id="search-button" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="40.0" />
+                                <Button id="search-button" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="27.0" prefWidth="40.0" onAction="#onSearch"/>
                             </children>
                         </HBox>
                         <HBox alignment="TOP_CENTER" maxWidth="800.0" prefHeight="8.0" prefWidth="800.0" spacing="10.0" VBox.vgrow="NEVER">

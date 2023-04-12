@@ -3,7 +3,6 @@ package com.bookstore.bookstore.controllers;
 import com.bookstore.bookstore.MainApplication;
 import com.bookstore.bookstore.daos.DAO;
 import com.bookstore.bookstore.models.User;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -42,7 +41,7 @@ public class RegisterController {
         window.setScene(scene);
     }
 
-    public void onRegisterButtonClick(ActionEvent actionEvent) throws IOException {
+    public void onRegisterButtonClick() throws IOException {
         ZoneId defaultZoneId = ZoneId.systemDefault();
         String nameString = name.getText();
         String passwordString = password.getText();

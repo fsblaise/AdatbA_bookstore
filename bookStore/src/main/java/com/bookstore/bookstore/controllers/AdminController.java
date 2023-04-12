@@ -19,13 +19,11 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 public class AdminController {
-    public Label welcomeText;
     @FXML
     private AnchorPane content;
     @FXML
     private Button addProduct;
     private List<Node> items;
-    private TableColumn[] columns;
 
     @FXML
     protected void onAddProduct() {
@@ -131,7 +129,7 @@ public class AdminController {
     }
 
     @FXML
-    protected void onModifyProduct() throws IOException {
+    protected void onModifyProduct() {
         String result = getDataFromDialog();
 
         if (result.isEmpty()) {
@@ -290,7 +288,7 @@ public class AdminController {
         }
 
         items = new ArrayList<>();
-        TableView<T> dataTable = new TableView<T>();
+        TableView<T> dataTable = new TableView<>();
         dataTable.setLayoutY(150);
         dataTable.setPrefWidth(content.getPrefWidth());
         dataTable.setPrefHeight(200);
@@ -298,7 +296,7 @@ public class AdminController {
         dataTable.getColumns().clear();
         dataTable.getItems().clear();
         List<Field> properties = Arrays.asList(data.get(0).getClass().getDeclaredFields());
-        columns = new TableColumn[properties.size()];
+        TableColumn[] columns = new TableColumn[properties.size()];
 
         for (int i = 0; i < columns.length; i++) {
             columns[i] = new TableColumn<T, String>(properties.get(i).getName());
@@ -471,6 +469,12 @@ public class AdminController {
 
         DAO.instance().deleteData(DAO.instance().getDataByID(Stock.class, Integer.parseInt(idString)));
     }
+
+    public void onStocksButtonClick() {
+        ArrayList<Stock> data = DAO.instance().runCustomQuery(Stock.class, "SELECT * FROM BOOK_STORE_STOCK");
+        this.generateTable(data);
+    }
+
     // Navibar section
     public void onProductsNavClick(ActionEvent actionEvent) {
         Parent root;

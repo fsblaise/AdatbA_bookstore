@@ -23,9 +23,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -55,7 +53,7 @@ public class MainController {
     private boolean isAdmin;
 
     @FXML
-    public void initialize() throws NoSuchFieldException {
+    public void initialize() {
         onProductsButtonClick();
     }
 
@@ -136,7 +134,7 @@ public class MainController {
     }
 
     @FXML
-    public void onProductsButtonClick() throws NoSuchFieldException {
+    public void onProductsButtonClick() {
         isAdmin = DAO.getCurrentUser().getEmail().equals("admin");
         if (isAdmin) {
             Button admin = new Button("Admin");
@@ -195,15 +193,15 @@ public class MainController {
         storeButtons.clear();
         right.getChildren().clear();
 
-        List<Object[]> stores = DAO.instance().listStores();
-        System.out.println(stores);
-        for(Object[] store : stores)
+        List<Object> stores = DAO.instance().listStores();
+
+        for(Object store : stores)
         {
-            Button r = new Button(store[0] + " : " +store[1]);
+            Button r = new Button(store.toString());
             r.setMinWidth(220);
             r.setTextAlignment(TextAlignment.CENTER);
             r.setOnAction(event -> {
-                data = DAO.instance().getAllByStore(store[0].toString());
+                data = DAO.instance().getAllByStore(store.toString());
                 generateList(data);
             });
             storeButtons.add(r);
