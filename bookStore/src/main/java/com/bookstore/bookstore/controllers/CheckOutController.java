@@ -4,6 +4,7 @@ import com.bookstore.bookstore.MainApplication;
 import com.bookstore.bookstore.daos.DAO;
 import com.bookstore.bookstore.models.*;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -11,8 +12,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -21,25 +22,18 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 public class CheckOutController {
+    public HBox toolbar;
     @FXML
     private BorderPane content;
     @FXML
     private Button doneOnline;
     private List<Node> items;
     ArrayList<Product> cartArray = new ArrayList<>();
+    private boolean isAdmin;
 
     @FXML
     public void initialize() {
-        var cart = DAO.getCart();
-
-        for (var key : cart.keySet()) {
-            Product product = DAO.instance().getDataByID(Product.class, key);
-            for (int i = 0; i < cart.get(key); i++) {
-                this.cartArray.add(product);
-            }
-        }
-
-        this.generateTable(this.cartArray);
+        onBasketClicked();
     }
 
     public void onDoneOnline() {
@@ -329,12 +323,60 @@ public class CheckOutController {
         content.getChildren().addAll(items);
     }
 
-    public void onBasketClicked(ActionEvent actionEvent) {
+    public void onBasketClicked() {
+        isAdmin = DAO.getCurrentUser().getEmail().equals("admin");
+        if (isAdmin) {
+            Button admin = new Button("Admin");
+            admin.setOnAction(actionEvent -> {
+                this.onAdminClicked();
+            });
+            admin.getStyleClass().addAll("nav-button", "raised");
+            admin.setMinWidth(70);
+            toolbar.getChildren().add(admin);
+        }
+        var cart = DAO.getCart();
+
+        for (var key : cart.keySet()) {
+            Product product = DAO.instance().getDataByID(Product.class, key);
+            for (int i = 0; i < cart.get(key); i++) {
+                this.cartArray.add(product);
+            }
+        }
+
+        this.generateTable(this.cartArray);
+    }
+
+    public void onAdminClicked() {
+        Parent root;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("admin-view.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        MainApplication.getMainStage().getScene().setRoot(root);
+        MainApplication.getMainStage().setMaximized(true);
     }
 
     public void onProductsButtonClick(ActionEvent actionEvent) {
+        Parent root;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("main-view.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        MainApplication.getMainStage().getScene().setRoot(root);
     }
 
     public void onLogOutButtonClick(ActionEvent actionEvent) {
+        Parent root;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("login-view.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        MainApplication.getMainStage().getScene().setRoot(root);
+        MainApplication.getMainStage().setMaximized(false);
     }
 }

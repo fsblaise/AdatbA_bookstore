@@ -1,1 +1,19 @@
 @import 'global.css';
+
+#map {
+    -fx-background-image: url("../image/hungary_map.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+}
+
+#pin {
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: transparent;
+}
+
+#pin:pressed {
+    -fx-background-color: rgba(150,150,150,0.2);
+    -fx-background-radius: 50%;
+}

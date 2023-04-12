@@ -3,6 +3,7 @@ package com.bookstore.bookstore.controllers;
 import com.bookstore.bookstore.MainApplication;
 import com.bookstore.bookstore.daos.DAO;
 import com.bookstore.bookstore.models.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -18,6 +19,7 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 public class AdminController {
+    public Label welcomeText;
     @FXML
     private AnchorPane content;
     @FXML
@@ -468,5 +470,61 @@ public class AdminController {
         }
 
         DAO.instance().deleteData(DAO.instance().getDataByID(Stock.class, Integer.parseInt(idString)));
+    }
+    // Navibar section
+    public void onProductsNavClick(ActionEvent actionEvent) {
+        Parent root;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("main-view.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        MainApplication.getMainStage().getScene().setRoot(root);
+    }
+
+    public void onStoresClicked(ActionEvent actionEvent) {
+        Parent root;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("stores-view.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        MainApplication.getMainStage().getScene().setRoot(root);
+    }
+
+    public void onBasketClicked(ActionEvent actionEvent) {
+        Parent root;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("checkout-view.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        MainApplication.getMainStage().getScene().setRoot(root);
+    }
+
+    public void onProfileClicked(ActionEvent actionEvent) {
+        Parent root;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("profile-view.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        MainApplication.getMainStage().getScene().setRoot(root);
+    }
+
+    public void onLogOutButtonClick(ActionEvent actionEvent) throws IOException {
+        Parent root;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("login-view.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        MainApplication.getMainStage().getScene().setRoot(root);
+        MainApplication.getMainStage().setMaximized(false);
     }
 }

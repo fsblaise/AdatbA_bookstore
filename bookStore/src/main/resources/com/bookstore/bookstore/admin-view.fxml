@@ -4,25 +4,55 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <?import java.net.URL?>
-<AnchorPane fx:id="content" prefHeight="400.0" prefWidth="826.0" xmlns="http://javafx.com/javafx/19"
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+<BorderPane prefHeight="1080.0" prefWidth="1920.0" minWidth="1366.0" minHeight="768.0" xmlns="http://javafx.com/javafx/19"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.AdminController">
     <stylesheets>
         <URL value="@css/admin.css"/>
     </stylesheets>
-    <Button fx:id="addProduct" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAddProduct"
-            text="Add Product"/>
-    <Button layoutX="149.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAddStore" text="Add Store"/>
-    <Button layoutX="751.0" layoutY="14.0" mnemonicParsing="false" onAction="#onLogOut" text="logOut"/>
-    <Button layoutX="14.0" layoutY="52.0" mnemonicParsing="false" onAction="#onModifyProduct" text="Modify Product"/>
-    <Button layoutX="149.0" layoutY="52.0" mnemonicParsing="false" onAction="#onModifyStore" text="Modify Store"/>
-    <Button layoutX="14.0" layoutY="93.0" mnemonicParsing="false" onAction="#onDeleteProduct" text="Delete Product"/>
-    <Button layoutX="152.0" layoutY="93.0" mnemonicParsing="false" onAction="#onDeleteStore" text="Delete Store"/>
-    <Button layoutX="664.0" layoutY="139.0" onAction="#onUsersButtonClick" text="Users"/>
-    <Button layoutX="664.0" layoutY="14.0" onAction="#onProductsButtonClick" text="Products"/>
-    <Button layoutX="664.0" layoutY="93.0" onAction="#onPurchasesButtonClick" text="Purchases"/>
-    <Button layoutX="664.0" layoutY="52.0" onAction="#onStoresButtonClick" text="Stores"/>
-    <Button layoutX="275.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAddStock" text="Add Stock"/>
-    <Button layoutX="275.0" layoutY="52.0" mnemonicParsing="false" onAction="#onModifyStock" text="Modify Stock"/>
-    <Button layoutX="276.0" layoutY="93.0" mnemonicParsing="false" onAction="#onDeleteStock" text="Delete Stock"/>
-
-</AnchorPane>
+    <top>
+        <HBox id="toolbar" alignment="CENTER" prefHeight="50.0" prefWidth="856.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <Label fx:id="welcomeText" minWidth="94.0" text="BookStore">
+                <font>
+                    <Font name="Segoe UI Bold" size="19.0" />
+                </font>
+            </Label>
+            <Button minWidth="70.0" onAction="#onProductsNavClick" styleClass="nav-button, raised" text="Browse" />
+            <Button minWidth="70.0" onAction="#onStoresClicked" styleClass="nav-button, raised" text="Stores" />
+            <Button minWidth="70.0" onAction="#onBasketClicked" styleClass="nav-button, raised" text="Basket" />
+            <Button minWidth="70.0" onAction="#onProfileClicked" styleClass="nav-button, raised" text="Profile" />
+            <Button id="logout" minWidth="70.0" onAction="#onLogOutButtonClick" styleClass="raised" text="Logout" textFill="WHITE">
+                <font>
+                    <Font name="System Bold" size="12.0" />
+                </font>
+            </Button>
+            <Button minWidth="70.0" styleClass="nav-button, raised" text="Admin" />
+            <padding>
+                <Insets left="20.0" right="20.0" />
+            </padding>
+        </HBox>
+    </top>
+    <center>
+        <AnchorPane fx:id="content">
+            <Button fx:id="addProduct" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAddProduct"
+                    text="Add Product"/>
+            <Button layoutX="149.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAddStore" text="Add Store"/>
+            <Button layoutX="751.0" layoutY="14.0" mnemonicParsing="false" onAction="#onLogOut" text="logOut"/>
+            <Button layoutX="14.0" layoutY="52.0" mnemonicParsing="false" onAction="#onModifyProduct" text="Modify Product"/>
+            <Button layoutX="149.0" layoutY="52.0" mnemonicParsing="false" onAction="#onModifyStore" text="Modify Store"/>
+            <Button layoutX="14.0" layoutY="93.0" mnemonicParsing="false" onAction="#onDeleteProduct" text="Delete Product"/>
+            <Button layoutX="152.0" layoutY="93.0" mnemonicParsing="false" onAction="#onDeleteStore" text="Delete Store"/>
+            <Button layoutX="664.0" layoutY="139.0" onAction="#onUsersButtonClick" text="Users"/>
+            <Button layoutX="664.0" layoutY="14.0" onAction="#onProductsButtonClick" text="Products"/>
+            <Button layoutX="664.0" layoutY="93.0" onAction="#onPurchasesButtonClick" text="Purchases"/>
+            <Button layoutX="664.0" layoutY="52.0" onAction="#onStoresButtonClick" text="Stores"/>
+            <Button layoutX="275.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAddStock" text="Add Stock"/>
+            <Button layoutX="275.0" layoutY="52.0" mnemonicParsing="false" onAction="#onModifyStock" text="Modify Stock"/>
+            <Button layoutX="276.0" layoutY="93.0" mnemonicParsing="false" onAction="#onDeleteStock" text="Delete Stock"/>
+        </AnchorPane>
+    </center>
+</BorderPane>

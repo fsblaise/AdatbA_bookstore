@@ -33,18 +33,17 @@ public class LoginController {
             return;
         }
 
-        if (emailString.equals("admin") && passwordString.equals("admin")) {
-            Parent root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("admin-view.fxml")));
-            Stage window = (Stage) welcomeText.getScene().getWindow();
-            window.setScene(new Scene(root, 700, 500));
-            window.setMaximized(true);
-            return;
-        }
-
         DAO.instance().loginUser(emailString, passwordString);
 
         if (DAO.getCurrentUser() == null) {
             //TODO: Error
+            return;
+        }
+
+        if (emailString.equals("admin") && passwordString.equals("admin")) {
+            Parent root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("admin-view.fxml")));
+            MainApplication.getMainStage().getScene().setRoot(root);
+            MainApplication.getMainStage().setMaximized(true);
             return;
         }
 
@@ -55,8 +54,6 @@ public class LoginController {
 
     public void onRegisterButtonClick() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("register-view.fxml")));
-        Stage window = (Stage) welcomeText.getScene().getWindow();
-        Scene scene = new Scene(root, 800, 600);
-        window.setScene(scene);
+        MainApplication.getMainStage().getScene().setRoot(root);
     }
 }

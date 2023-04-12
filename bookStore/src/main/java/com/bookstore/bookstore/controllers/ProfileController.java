@@ -4,6 +4,7 @@ import com.bookstore.bookstore.MainApplication;
 import com.bookstore.bookstore.daos.DAO;
 import com.bookstore.bookstore.models.User;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,20 +13,24 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import org.apache.commons.codec.digest.DigestUtils;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.Objects;
 
 public class ProfileController {
+    public HBox toolbar;
     @FXML
     private Label welcomeText;
     @FXML
-    private Label name;
+    private TextField name;
     @FXML
-    private Label birthday;
+    private TextField birthday;
     @FXML
-    private Label email;
+    private TextField email;
     @FXML
     private TextField passwordField;
     @FXML
@@ -37,6 +42,7 @@ public class ProfileController {
     @FXML
     private Label isRegular;
     private User user;
+    private boolean isAdmin;
 
     @FXML
     public void initialize() {
@@ -46,6 +52,16 @@ public class ProfileController {
     @FXML
     public void onProfileClicked() {
         this.user = DAO.getCurrentUser();
+        isAdmin = this.user.getEmail().equals("admin");
+        if (isAdmin) {
+            Button admin = new Button("Admin");
+            admin.setOnAction(actionEvent -> {
+                this.onAdminClicked();
+            });
+            admin.getStyleClass().addAll("nav-button", "raised");
+            admin.setMinWidth(70);
+            toolbar.getChildren().add(admin);
+        }
 
         name.setText(user.getName());
         birthday.setText(user.getBirthDate().toString());
@@ -90,10 +106,15 @@ public class ProfileController {
 
     @FXML
     protected void onLogOutButtonClick() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("login-view.fxml")));
-        Stage window = (Stage) welcomeText.getScene().getWindow();
-        Scene scene = new Scene(root, 800, 600);
-        window.setScene(scene);
+        Parent root;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("login-view.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        MainApplication.getMainStage().getScene().setRoot(root);
+        MainApplication.getMainStage().setMaximized(false);
     }
 
     @FXML
@@ -108,12 +129,35 @@ public class ProfileController {
         MainApplication.getMainStage().getScene().setRoot(root);
     }
 
-    public void onSubmitClicked() {
+    public void onPasswordSubmitClicked() {
         if (!passwordField.getText().isEmpty() && !confirmPasswordField.getText().isEmpty() && passwordField.getText().equals(confirmPasswordField.getText())) {
-            System.out.println(passwordField.getText());
-            System.out.println(confirmPasswordField.getText());
+            user.setPassword(DigestUtils.sha256Hex(passwordField.getText()));
+            DAO.instance().updateData(user);
         } else {
             System.out.println("Nem jo vagy nem egyeznek a jelszavak :$");
         }
+    }
+
+    public void onPersonalSubmitClicked() {
+        if (name.getText().isEmpty() || email.getText().isEmpty() || birthday.getText().isEmpty()) {
+            System.out.println("Nem jo");
+        } else {
+            user.setName(name.getText());
+            user.setEmail(email.getText());
+            user.setBirthDate(Date.valueOf(birthday.getText()));
+
+            DAO.instance().updateData(user);
+        }
+    }
+
+    public void onAdminClicked() {
+        Parent root;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("admin-view.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        MainApplication.getMainStage().getScene().setRoot(root);
+        MainApplication.getMainStage().setMaximized(true);
     }
 }

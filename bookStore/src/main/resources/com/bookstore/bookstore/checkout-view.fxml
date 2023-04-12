@@ -13,7 +13,7 @@
         <URL value="@css/checkout.css"/>
     </stylesheets>
     <top>
-        <HBox id="toolbar" alignment="CENTER" prefHeight="50.0" prefWidth="856.0" spacing="20.0" BorderPane.alignment="CENTER">
+        <HBox fx:id="toolbar" id="toolbar" alignment="CENTER" prefHeight="50.0" prefWidth="856.0" spacing="20.0" BorderPane.alignment="CENTER">
             <Label fx:id="welcomeText" minWidth="94.0" text="BookStore">
                 <font>
                     <Font name="Segoe UI Bold" size="19.0" />

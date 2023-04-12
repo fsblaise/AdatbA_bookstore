@@ -15,7 +15,7 @@
         <URL value="@css/profile.css" />
     </stylesheets>
     <top>
-        <HBox id="toolbar" alignment="CENTER" prefHeight="50.0" prefWidth="856.0" spacing="20.0" BorderPane.alignment="CENTER">
+        <HBox fx:id="toolbar" id="toolbar" alignment="CENTER" prefHeight="50.0" prefWidth="856.0" spacing="20.0" BorderPane.alignment="CENTER">
             <Label fx:id="welcomeText" minWidth="94.0" text="BookStore">
                 <font>
                     <Font name="Segoe UI Bold" size="19.0" />
@@ -38,7 +38,7 @@
    <center>
       <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0" BorderPane.alignment="CENTER">
          <children>
-            <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="200.0" minWidth="250.0" prefHeight="200.0" prefWidth="250.0" styleClass="card">
+            <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="220.0" minWidth="300.0" prefHeight="220.0" prefWidth="300.0" styleClass="card">
                <top>
                   <Label text="Personal details" BorderPane.alignment="CENTER">
                      <font>
@@ -47,27 +47,34 @@
                   </Label>
                </top>
                <center>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="250.0" BorderPane.alignment="CENTER">
                      <children>
-                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                        <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="80.0" spacing="20.0">
                            <children>
-                              <Label text="Name:" />
-                              <Label text="Birthday:" />
-                              <Label text="Email address:" />
+                              <Label minHeight="27.0" text="Name:" />
+                              <Label minHeight="27.0" text="Birthday:" />
+                              <Label minHeight="27.0" text="Email address:" />
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="100.0" spacing="20.0">
+                        <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="150.0" spacing="20.0">
                            <children>
-                              <Label fx:id="name" />
-                              <Label fx:id="birthday" />
-                              <Label fx:id="email" />
+                              <TextField fx:id="name" />
+                              <TextField fx:id="birthday" />
+                              <TextField fx:id="email" />
                            </children>
                         </VBox>
                      </children>
                   </HBox>
                </center>
+               <bottom>
+                  <Button mnemonicParsing="false" onAction="#onPersonalSubmitClicked" text="Submit changes" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets bottom="13.0" />
+                     </BorderPane.margin>
+                  </Button>
+               </bottom>
             </BorderPane>
-            <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="200.0" minWidth="250.0" prefHeight="200.0" prefWidth="250.0" styleClass="card">
+            <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="220.0" minWidth="300.0" prefHeight="220.0" prefWidth="300.0" styleClass="card">
                <top>
                   <Label text="Security" BorderPane.alignment="CENTER">
                      <font>
@@ -76,21 +83,21 @@
                   </Label>
                </top>
                <center>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="250.0" spacing="10.0" BorderPane.alignment="CENTER">
                      <children>
                         <Label text="Password" />
                         <TextField fx:id="passwordField" />
                         <Label text="Confirm password" />
                         <TextField fx:id="confirmPasswordField" />
-                        <Button fx:id="submitButton" onAction="#onSubmitClicked" mnemonicParsing="false" text="Submit changes" />
+                        <Button fx:id="submitButton" mnemonicParsing="false" onAction="#onPasswordSubmitClicked" text="Submit changes" />
                      </children>
                      <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets left="10.0" right="10.0" top="10.0" />
                      </padding>
                   </VBox>
                </center>
             </BorderPane>
-            <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="200.0" minWidth="250.0" prefHeight="200.0" prefWidth="250.0" styleClass="card">
+            <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="220.0" minWidth="300.0" prefHeight="220.0" prefWidth="300.0" styleClass="card">
                <top>
                   <Label text="Shopping details" BorderPane.alignment="CENTER">
                      <font>
@@ -99,7 +106,7 @@
                   </Label>
                </top>
                <center>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="250.0" BorderPane.alignment="CENTER">
                      <children>
                         <VBox alignment="CENTER_LEFT" prefHeight="152.0" prefWidth="124.0" spacing="20.0">
                            <children>

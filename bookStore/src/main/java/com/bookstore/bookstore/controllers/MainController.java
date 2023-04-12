@@ -4,6 +4,7 @@ import com.bookstore.bookstore.MainApplication;
 import com.bookstore.bookstore.daos.DAO;
 import com.bookstore.bookstore.models.Product;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Orientation;
@@ -15,6 +16,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
@@ -40,6 +42,7 @@ public class MainController {
     public VBox left;
     @FXML
     public VBox right;
+    public HBox toolbar;
     @FXML
     private Label welcomeText;
     @FXML
@@ -49,6 +52,7 @@ public class MainController {
     @FXML
     ArrayList<Button> storeButtons = new ArrayList<>();
     ArrayList<Product> data;
+    private boolean isAdmin;
 
     @FXML
     public void initialize() throws NoSuchFieldException {
@@ -57,10 +61,15 @@ public class MainController {
 
     @FXML
     protected void onLogOutButtonClick() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("login-view.fxml")));
-        Stage window = (Stage) welcomeText.getScene().getWindow();
-        Scene scene = new Scene(root, 800, 600);
-        window.setScene(scene);
+        Parent root;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("login-view.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        MainApplication.getMainStage().getScene().setRoot(root);
+        MainApplication.getMainStage().setMaximized(false);
     }
 
     public void generateList(ArrayList<Product> filteredData) {
@@ -128,6 +137,16 @@ public class MainController {
 
     @FXML
     public void onProductsButtonClick() throws NoSuchFieldException {
+        isAdmin = DAO.getCurrentUser().getEmail().equals("admin");
+        if (isAdmin) {
+            Button admin = new Button("Admin");
+            admin.setOnAction(actionEvent -> {
+                this.onAdminClicked();
+            });
+            admin.getStyleClass().addAll("nav-button", "raised");
+            admin.setMinWidth(70);
+            toolbar.getChildren().add(admin);
+        }
         data = DAO.instance().runCustomQuery(Product.class, "SELECT * FROM BOOK_STORE_PRODUCT ORDER BY production DESC, review DESC");
         List<Object[]> types = DAO.instance().listTypes();
 
@@ -242,5 +261,16 @@ public class MainController {
         }
 
         MainApplication.getMainStage().getScene().setRoot(root);
+    }
+
+    public void onAdminClicked() {
+        Parent root;
+        try {
+            root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("admin-view.fxml")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        MainApplication.getMainStage().getScene().setRoot(root);
+        MainApplication.getMainStage().setMaximized(true);
     }
 }

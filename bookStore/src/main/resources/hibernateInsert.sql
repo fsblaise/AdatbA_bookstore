@@ -162,18 +162,18 @@ INSERT INTO BOOK_STORE_PRODUCT(review, type, name, production, genre) VALUES(5, 
 INSERT INTO BOOK_STORE_PRODUCT(review, type, name, production, genre) VALUES(2, 'Hangoskönyv', 'A bennünk rejlő erő', '2017', 'Önismereti');
 
 -- Az Aruhaz tabla feltoltese:ÁruházId, Típus, Helyszín, Kapacitás
-INSERT INTO BOOK_STORE_STORE(type, place, capacity) VALUES( 'fizikai', 'Budapest, IX. kerület, Üllői út 182.', 750);
-INSERT INTO BOOK_STORE_STORE(type, place, capacity) VALUES( 'fizikai', 'Debrecen, Nagyállomás utca 1.', 400);
-INSERT INTO BOOK_STORE_STORE(type, place, capacity) VALUES( 'fizikai', 'Szeged, Tisza Lajos krt. 49.', 200);
-INSERT INTO BOOK_STORE_STORE(type, place, capacity) VALUES( 'fizikai', 'Győr, Budai út 1.', 1000);
-INSERT INTO BOOK_STORE_STORE(type, place, capacity) VALUES( 'fizikai', 'Pécs, Széchenyi tér 1.', 500);
-INSERT INTO BOOK_STORE_STORE(type, place, capacity) VALUES( 'fizikai', 'Debrecen, Virág utca 10.', 400);
-INSERT INTO BOOK_STORE_STORE(type, place, capacity) VALUES( 'fizikai', 'Szeged, Csap utca 90.', 600);
-INSERT INTO BOOK_STORE_STORE(type, place, capacity) VALUES( 'fizikai', 'Csanádpalota, Hattyú utca 28.', 100);
-INSERT INTO BOOK_STORE_STORE(type, place, capacity) VALUES( 'fizikai', 'Makó, Szegedi utca 22.', 300);
-INSERT INTO BOOK_STORE_STORE(type, place, capacity) VALUES( 'fizikai', 'Vásárhely, Kiskakas út 3.', 600);
-INSERT INTO BOOK_STORE_STORE(type, place, capacity) VALUES( 'fizikai', 'Eger, Ideges sor 67.', 500);
-INSERT INTO BOOK_STORE_STORE(type, place, capacity) VALUES( 'online', 'online', 10.000);
+INSERT INTO BOOK_STORE_STORE(type, place, capacity, coords) VALUES( 'fizikai', 'Budapest, IX. kerület, Üllői út 182.', 750, '534.0|287.0');
+INSERT INTO BOOK_STORE_STORE(type, place, capacity, coords) VALUES( 'fizikai', 'Debrecen, Nagyállomás utca 1.', 400, '940.0|261.0');
+INSERT INTO BOOK_STORE_STORE(type, place, capacity, coords) VALUES( 'fizikai', 'Szeged, Tisza Lajos krt. 49.', 200, '695.0|544.0');
+INSERT INTO BOOK_STORE_STORE(type, place, capacity, coords) VALUES( 'fizikai', 'Győr, Budai út 1.', 1000, '300.0|236.0');
+INSERT INTO BOOK_STORE_STORE(type, place, capacity, coords) VALUES( 'fizikai', 'Pécs, Széchenyi tér 1.', 500, '380.0|598.0');
+INSERT INTO BOOK_STORE_STORE(type, place, capacity, coords) VALUES( 'fizikai', 'Debrecen, Virág utca 10.', 400, '940.0|241.0');
+INSERT INTO BOOK_STORE_STORE(type, place, capacity, coords) VALUES( 'fizikai', 'Szeged, Csap utca 90.', 600, '705.0|534.0');
+INSERT INTO BOOK_STORE_STORE(type, place, capacity, coords) VALUES( 'fizikai', 'Csanádpalota, Hattyú utca 28.', 100, '786.0|556.0');
+INSERT INTO BOOK_STORE_STORE(type, place, capacity, coords) VALUES( 'fizikai', 'Makó, Szegedi utca 22.', 300, '744.0|564.0');
+INSERT INTO BOOK_STORE_STORE(type, place, capacity, coords) VALUES( 'fizikai', 'Vásárhely, Kiskakas út 3.', 600, '726.0|530.0');
+INSERT INTO BOOK_STORE_STORE(type, place, capacity, coords) VALUES( 'fizikai', 'Eger, Ideges sor 67.', 500, '735.0|196.0');
+INSERT INTO BOOK_STORE_STORE(type, place, capacity, coords) VALUES( 'online', 'online', 10.000, '0|0');
 
 -- A Felhasznalo tabla feltoltese: FelhasználóId, Név, Email, SzületésiIdő, ,  MegvásároltTermékekSzáma
 INSERT INTO BOOK_STORE_USERS(password, name, email, birthdate, purchasedproducts, isregular) VALUES('e6837af0b5dcb5397c6bc8b52c0fb95aa49a3fea4303e274c7501f0857cb9b80', 'Kovács János', 'kovacs.janos@nevhu.com', TO_DATE('20-05-1975','dd mm yyyy'), 11, 0);

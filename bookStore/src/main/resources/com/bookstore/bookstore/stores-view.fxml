@@ -9,13 +9,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.shape.SVGPath?>
-<BorderPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.StoresController">
+<?import javafx.scene.layout.VBox?>
+<BorderPane prefHeight="1080.0" prefWidth="1920.0" minWidth="1366.0" minHeight="768.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.StoresController">
     <stylesheets>
         <URL value="@css/stores.css" />
     </stylesheets>
     <top>
-        <HBox id="toolbar" alignment="CENTER" prefHeight="50.0" prefWidth="856.0" spacing="20.0" BorderPane.alignment="CENTER">
+        <HBox fx:id="toolbar" id="toolbar" alignment="CENTER" prefHeight="50.0" prefWidth="856.0" spacing="20.0" BorderPane.alignment="CENTER">
             <Label fx:id="welcomeText" minWidth="94.0" text="BookStore">
                 <font>
                     <Font name="Segoe UI Bold" size="19.0" />
@@ -35,4 +35,9 @@
             </padding>
         </HBox>
     </top>
+    <center>
+        <AnchorPane onMouseClicked="#onMapClicked" maxWidth="1210.0" maxHeight="746.0" BorderPane.alignment="CENTER" fx:id="map" id="map">
+            <Label fx:id="storeAddress" style="-fx-background-color: white"/>
+        </AnchorPane>
+    </center>
 </BorderPane>

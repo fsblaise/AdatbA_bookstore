@@ -22,6 +22,9 @@ public class Store {
     @Column(length = 6)
     private int capacity;
 
+    @Column(length = 20)
+    private String coords;
+
     @Override
     public String toString() {
         return this.place;
