@@ -36,9 +36,7 @@ public class RegisterController {
     @FXML
     protected void onLoginButtonClick() throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("login-view.fxml")));
-        Stage window = (Stage) welcomeText.getScene().getWindow();
-        Scene scene = new Scene(root, 800, 600);
-        window.setScene(scene);
+        MainApplication.getMainStage().getScene().setRoot(root);
     }
 
     public void onRegisterButtonClick() throws IOException {
@@ -66,8 +64,6 @@ public class RegisterController {
         DAO.instance().addData(user);
 
         Parent root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("login-view.fxml")));
-        Stage window = (Stage) welcomeText.getScene().getWindow();
-        Scene scene = new Scene(root, 800, 600);
-        window.setScene(scene);
+        MainApplication.getMainStage().getScene().setRoot(root);
     }
 }
