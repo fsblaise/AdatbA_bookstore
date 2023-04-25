@@ -128,6 +128,20 @@ public class DAO {
         session.close();
     }
 
+    public void updateUser() {
+        Session session = this.sessionFactory.openSession();
+        Transaction t = session.beginTransaction();
+
+        ArrayList<User> results = (ArrayList<User>) session.createNativeQuery("SELECT * FROM BOOK_STORE_USERS WHERE email = ? AND password = ?", User.class).setParameter(1, currentUser.getEmail()).setParameter(2, currentUser.getPassword()).list();
+
+        if (results.size() != 0) {
+            currentUser = results.get(0);
+        }
+
+        t.commit();
+        session.close();
+    }
+
     public void closeSession() {
         if (this.sessionFactory.isOpen()) {
             this.sessionFactory.close();
@@ -217,7 +231,8 @@ public class DAO {
         if (products != null) {
             for (var object : products) {
                 if (results.isEmpty()) {
-                    results.addAll(session.createNativeQuery("SELECT store.ID, store.PLACE, store.CAPACITY, store.TYPE FROM BOOK_STORE_STOCK store2 inner join BOOK_STORE_STORE store ON store.ID = store2.STORE_ID WHERE PRODUCT_ID = ?", Store.class).setParameter(1, object).list());
+                    results.addAll(session.createNativeQuery("SELECT store.ID, store.PLACE, store.CAPACITY, store.TYPE, store.COORDS FROM BOOK_STORE_STOCK store2 inner join BOOK_STORE_STORE store ON store.ID = store2.STORE_ID WHERE PRODUCT_ID = ?", Store.class)
+                            .setParameter(1, object).list());
                 } else {
                     var tmp = (ArrayList<Store>) session.createNativeQuery("SELECT store.ID, store.PLACE, store.CAPACITY, store.TYPE FROM BOOK_STORE_STOCK store2 inner join BOOK_STORE_STORE store ON store.ID = store2.STORE_ID WHERE PRODUCT_ID = ?", Store.class).setParameter(1, object).list();
                     for (var store : tmp) {
@@ -265,9 +280,10 @@ public class DAO {
         session.close();
 
         session = this.sessionFactory.openSession();
-        t = session.beginTransaction();
 
         for (var item : items) {
+            t = session.beginTransaction();
+
             if (purchase != null) {
                 session.createNativeQuery("INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(PURCHASE_ID, PRODUCTS) VALUES (?,?)")
                         .setParameter(1, purchase.getId())

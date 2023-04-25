@@ -9,16 +9,15 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.apache.commons.codec.digest.DigestUtils;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Objects;
 
 public class ProfileController {
@@ -28,13 +27,13 @@ public class ProfileController {
     @FXML
     private TextField name;
     @FXML
-    private TextField birthday;
+    private DatePicker birthday;
     @FXML
     private TextField email;
     @FXML
-    private TextField passwordField;
+    private PasswordField passwordField;
     @FXML
-    private TextField confirmPasswordField;
+    private PasswordField confirmPasswordField;
     @FXML
     private Button submitButton;
     @FXML
@@ -46,6 +45,7 @@ public class ProfileController {
 
     @FXML
     public void initialize() {
+        DAO.instance().updateUser();
         onProfileClicked();
     }
 
@@ -64,9 +64,9 @@ public class ProfileController {
         }
 
         name.setText(user.getName());
-        birthday.setText(user.getBirthDate().toString());
+        birthday.setValue(LocalDate.ofInstant(new java.util.Date(user.getBirthDate().getTime()).toInstant(), ZoneId.systemDefault()));
         email.setText(user.getEmail());
-        purchaseCount.setText("" + user.getPurchasedProducts());
+        purchaseCount.setText(String.valueOf(user.getPurchasedProducts()));
         isRegular.setText(user.getIsRegular() ? "Yes" : "No");
     }
 
@@ -139,12 +139,12 @@ public class ProfileController {
     }
 
     public void onPersonalSubmitClicked() {
-        if (name.getText().isEmpty() || email.getText().isEmpty() || birthday.getText().isEmpty()) {
+        if (name.getText().isEmpty() || email.getText().isEmpty()) {
             System.out.println("Nem jo");
         } else {
             user.setName(name.getText());
             user.setEmail(email.getText());
-            user.setBirthDate(Date.valueOf(birthday.getText()));
+            user.setBirthDate(Date.valueOf(birthday.getValue()));
 
             DAO.instance().updateData(user);
         }

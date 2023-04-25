@@ -10,6 +10,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.PasswordField?>
 <BorderPane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.ProfileController">
     <stylesheets>
         <URL value="@css/profile.css" />
@@ -59,7 +61,7 @@
                         <VBox alignment="CENTER_RIGHT" prefHeight="200.0" prefWidth="150.0" spacing="20.0">
                            <children>
                               <TextField fx:id="name" />
-                              <TextField fx:id="birthday" />
+                              <DatePicker fx:id="birthday" />
                               <TextField fx:id="email" />
                            </children>
                         </VBox>
@@ -86,9 +88,9 @@
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="250.0" spacing="10.0" BorderPane.alignment="CENTER">
                      <children>
                         <Label text="Password" />
-                        <TextField fx:id="passwordField" />
+                        <PasswordField fx:id="passwordField" />
                         <Label text="Confirm password" />
-                        <TextField fx:id="confirmPasswordField" />
+                        <PasswordField fx:id="confirmPasswordField" />
                         <Button fx:id="submitButton" mnemonicParsing="false" onAction="#onPasswordSubmitClicked" text="Submit changes" />
                      </children>
                      <padding>

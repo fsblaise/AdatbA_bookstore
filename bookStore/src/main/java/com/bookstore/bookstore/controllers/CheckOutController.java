@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -320,7 +321,9 @@ public class CheckOutController {
         deleteButton.setCellFactory(deleteCellFactory);
         dataTable.getColumns().add(deleteButton);
         items.add(dataTable);
-        content.getChildren().addAll(items);
+        StackPane stackPane = new StackPane();
+        stackPane.getChildren().addAll(items);
+        content.setCenter(stackPane);
     }
 
     public void onBasketClicked() {
@@ -334,6 +337,7 @@ public class CheckOutController {
             admin.setMinWidth(70);
             toolbar.getChildren().add(admin);
         }
+
         var cart = DAO.getCart();
 
         for (var key : cart.keySet()) {
@@ -342,6 +346,8 @@ public class CheckOutController {
                 this.cartArray.add(product);
             }
         }
+
+        System.out.println(this.cartArray);
 
         this.generateTable(this.cartArray);
     }

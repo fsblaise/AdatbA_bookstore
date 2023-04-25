@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.control.Label?>
-<?import javafx.geometry.Insets?>
-<BorderPane fx:id="content" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.CheckOutController">
+
+<BorderPane fx:id="content" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.CheckOutController">
     <stylesheets>
-        <URL value="@css/checkout.css"/>
+        <URL value="@css/checkout.css" />
     </stylesheets>
     <top>
-        <HBox fx:id="toolbar" id="toolbar" alignment="CENTER" prefHeight="50.0" prefWidth="856.0" spacing="20.0" BorderPane.alignment="CENTER">
+        <HBox id="toolbar" fx:id="toolbar" alignment="CENTER" prefHeight="50.0" prefWidth="856.0" spacing="20.0" BorderPane.alignment="CENTER">
             <Label fx:id="welcomeText" minWidth="94.0" text="BookStore">
                 <font>
                     <Font name="Segoe UI Bold" size="19.0" />
@@ -33,11 +34,15 @@
             </padding>
         </HBox>
     </top>
-    <center>
-        <Button fx:id="doneOnline" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onDoneOnline"
-                text="Done(online)"/>
-        <Button fx:id="doneOffline" layoutX="80.0" layoutY="14.0" mnemonicParsing="false" onAction="#onDoneOffline"
-                text="Done(offline)"/>
-        <Button fx:id="cancel" layoutX="131.0" layoutY="14.0" mnemonicParsing="false" onAction="#onCancel" text="Cancel"/>
-    </center>
+   <bottom>
+        <Button fx:id="cancel" mnemonicParsing="false" onAction="#onCancel" text="Cancel" BorderPane.alignment="CENTER" />
+   </bottom>
+   <right>
+      <VBox prefHeight="303.0" prefWidth="101.0" BorderPane.alignment="CENTER">
+         <children>
+              <Button fx:id="doneOffline" mnemonicParsing="false" onAction="#onDoneOffline" text="Done(offline)" />
+              <Button fx:id="doneOnline" mnemonicParsing="false" onAction="#onDoneOnline" text="Done(online)" />
+         </children>
+      </VBox>
+   </right>
 </BorderPane>
