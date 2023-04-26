@@ -1,39 +1,5 @@
 @import 'global.css';
 
-.nav-button {
-    -fx-border-radius: 10px;
-    -fx-background-color: #ffffff;
-}
-
-.nav-button:hover {
-    -fx-text-fill: #795548;
-    -fx-cursor: hand;
-}
-
-#logout {
-    -fx-background-color: #795548 !important;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-}
-
-#logout:hover {
-    -fx-border-color: none !important;
-    -fx-text-fill: #D7CCC8 !important;
-    -fx-cursor: hand !important;
-}
-
-#scroll-pane .track{
-    -fx-background-color: #D7CCC8;
-}
-
-#scroll-pane .thumb {
-    -fx-background-color: #795548;
-}
-
-#scroll-pane .thumb:hover {
-    -fx-background-color: #5D4037;
-}
-
 #search-bar {
     -fx-background-radius: 15 0 0 15;
     -fx-border-radius: 15 0 0 15;

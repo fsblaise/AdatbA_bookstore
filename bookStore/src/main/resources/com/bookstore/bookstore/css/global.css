@@ -43,6 +43,29 @@
     -fx-cursor: hand;
 }
 
+.nav-button {
+    -fx-border-radius: 10px;
+    -fx-background-color: #ffffff;
+}
+
+.nav-button:hover {
+    -fx-text-fill: #795548;
+    -fx-cursor: hand;
+}
+
+#logout {
+    -fx-background-color: #795548 !important;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+#logout:hover {
+    -fx-border-color: none !important;
+    -fx-text-fill: #D7CCC8 !important;
+    -fx-cursor: hand !important;
+}
+
+
 Button:hover {
     -fx-cursor: hand;
 }
@@ -82,4 +105,16 @@ TextField:focused, PasswordField:focused, DatePicker:focused {
     -fx-background-color: #ffffff;
     -fx-border-color: -color-primary;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 10, 0.12, -1.0, 2.0);
+}
+
+.track{
+    -fx-background-color: #D7CCC8;
+}
+
+.thumb {
+    -fx-background-color: #795548;
+}
+
+.thumb:hover {
+    -fx-background-color: #5D4037;
 }

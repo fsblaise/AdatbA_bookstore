@@ -54,13 +54,23 @@ public class ProfileController {
         this.user = DAO.getCurrentUser();
         isAdmin = this.user.getEmail().equals("admin");
         if (isAdmin) {
-            Button admin = new Button("Admin");
-            admin.setOnAction(actionEvent -> {
-                this.onAdminClicked();
-            });
-            admin.getStyleClass().addAll("nav-button", "raised");
-            admin.setMinWidth(70);
-            toolbar.getChildren().add(admin);
+            boolean hasAdminButton = false;
+            for (var item:
+                 toolbar.getChildren()) {
+                if (item.getId() != null && item.getId().equals("admin")) {
+                    hasAdminButton = true;
+                }
+            }
+            if(!hasAdminButton) {
+                Button admin = new Button("Admin");
+                admin.setId("admin");
+                admin.setOnAction(actionEvent -> {
+                    this.onAdminClicked();
+                });
+                admin.getStyleClass().addAll("nav-button", "raised");
+                admin.setMinWidth(70);
+                toolbar.getChildren().add(admin);
+            }
         }
 
         name.setText(user.getName());

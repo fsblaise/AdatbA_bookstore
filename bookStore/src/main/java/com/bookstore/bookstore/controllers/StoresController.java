@@ -88,13 +88,23 @@ public class StoresController {
     public void onStoresClicked() {
         isAdmin = DAO.getCurrentUser().getEmail().equals("admin");
         if (isAdmin) {
-            Button admin = new Button("Admin");
-            admin.setOnAction(actionEvent -> {
-                this.onAdminClicked();
-            });
-            admin.getStyleClass().addAll("nav-button", "raised");
-            admin.setMinWidth(70);
-            toolbar.getChildren().add(admin);
+            boolean hasAdminButton = false;
+            for (var item:
+                    toolbar.getChildren()) {
+                if (item.getId() != null && item.getId().equals("admin")) {
+                    hasAdminButton = true;
+                }
+            }
+            if(!hasAdminButton) {
+                Button admin = new Button("Admin");
+                admin.setId("admin");
+                admin.setOnAction(actionEvent -> {
+                    this.onAdminClicked();
+                });
+                admin.getStyleClass().addAll("nav-button", "raised");
+                admin.setMinWidth(70);
+                toolbar.getChildren().add(admin);
+            }
         }
         stores = DAO.instance().runCustomQuery(Store.class,"SELECT * FROM BOOK_STORE_STORE");
         for (var store:

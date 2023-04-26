@@ -22,7 +22,7 @@
     </stylesheets>
     <top>
         <HBox id="toolbar" alignment="CENTER" prefHeight="50.0" spacing="20.0" BorderPane.alignment="CENTER">
-            <Label fx:id="welcomeText" text="BookStore">
+            <Label fx:id="welcomeText" text="KönyvesBoltom.hu">
                 <font>
                     <Font name="Segoe UI Bold" size="19.0" />
                 </font>

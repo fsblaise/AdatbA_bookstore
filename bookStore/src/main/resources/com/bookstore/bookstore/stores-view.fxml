@@ -9,14 +9,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.layout.VBox?>
 <BorderPane prefHeight="1080.0" prefWidth="1920.0" minWidth="1366.0" minHeight="768.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.StoresController">
     <stylesheets>
         <URL value="@css/stores.css" />
     </stylesheets>
     <top>
         <HBox fx:id="toolbar" id="toolbar" alignment="CENTER" prefHeight="50.0" prefWidth="856.0" spacing="20.0" BorderPane.alignment="CENTER">
-            <Label fx:id="welcomeText" minWidth="94.0" text="BookStore">
+            <Label fx:id="welcomeText" minWidth="94.0" text="KönyvesBoltom.hu">
                 <font>
                     <Font name="Segoe UI Bold" size="19.0" />
                 </font>

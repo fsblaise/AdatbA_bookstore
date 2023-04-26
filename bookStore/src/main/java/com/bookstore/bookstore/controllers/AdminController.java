@@ -12,6 +12,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -20,7 +22,7 @@ import java.util.*;
 
 public class AdminController {
     @FXML
-    private AnchorPane content;
+    private VBox content;
     @FXML
     private Button addProduct;
     private List<Node> items;
@@ -289,14 +291,14 @@ public class AdminController {
 
         items = new ArrayList<>();
         TableView<T> dataTable = new TableView<>();
-        dataTable.setLayoutY(150);
-        dataTable.setPrefWidth(content.getPrefWidth());
-        dataTable.setPrefHeight(200);
 
         dataTable.getColumns().clear();
         dataTable.getItems().clear();
         List<Field> properties = Arrays.asList(data.get(0).getClass().getDeclaredFields());
         TableColumn[] columns = new TableColumn[properties.size()];
+
+        dataTable.setPrefWidth(columns.length * 150);
+        dataTable.setPrefHeight(data.size() * 26);
 
         for (int i = 0; i < columns.length; i++) {
             columns[i] = new TableColumn<T, String>(properties.get(i).getName());
@@ -331,12 +333,6 @@ public class AdminController {
     public void onStoresButtonClick() {
         ArrayList<Store> data = DAO.instance().runCustomQuery(Store.class, "SELECT * FROM BOOK_STORE_STORE");
         this.generateTable(data);
-    }
-
-    public void onLogOut() throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(MainApplication.class.getResource("login-view.fxml")));
-        Stage window = (Stage) addProduct.getScene().getWindow();
-        window.setScene(new Scene(root, 700, 500));
     }
 
     public void onAddStock() {

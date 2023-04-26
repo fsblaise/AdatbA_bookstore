@@ -1,22 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.AnchorPane?>
-
 <?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.control.Label?>
-<?import javafx.geometry.Insets?>
-<BorderPane prefHeight="1080.0" prefWidth="1920.0" minWidth="1366.0" minHeight="768.0" xmlns="http://javafx.com/javafx/19"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.AdminController">
+
+<BorderPane minHeight="768.0" minWidth="1366.0" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bookstore.bookstore.controllers.AdminController">
     <stylesheets>
-        <URL value="@css/admin.css"/>
+        <URL value="@css/admin.css" />
     </stylesheets>
     <top>
         <HBox id="toolbar" alignment="CENTER" prefHeight="50.0" prefWidth="856.0" spacing="20.0" BorderPane.alignment="CENTER">
-            <Label fx:id="welcomeText" minWidth="94.0" text="BookStore">
+            <Label fx:id="welcomeText" minWidth="94.0" text="KönyvesBoltom.hu">
                 <font>
                     <Font name="Segoe UI Bold" size="19.0" />
                 </font>
@@ -37,23 +36,69 @@
         </HBox>
     </top>
     <center>
-        <AnchorPane fx:id="content">
-            <Button fx:id="addProduct" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAddProduct"
-                    text="Add Product"/>
-            <Button layoutX="149.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAddStore" text="Add Store"/>
-            <Button layoutX="751.0" layoutY="14.0" mnemonicParsing="false" onAction="#onLogOut" text="logOut"/>
-            <Button layoutX="14.0" layoutY="52.0" mnemonicParsing="false" onAction="#onModifyProduct" text="Modify Product"/>
-            <Button layoutX="149.0" layoutY="52.0" mnemonicParsing="false" onAction="#onModifyStore" text="Modify Store"/>
-            <Button layoutX="14.0" layoutY="93.0" mnemonicParsing="false" onAction="#onDeleteProduct" text="Delete Product"/>
-            <Button layoutX="152.0" layoutY="93.0" mnemonicParsing="false" onAction="#onDeleteStore" text="Delete Store"/>
-            <Button layoutX="664.0" layoutY="139.0" onAction="#onUsersButtonClick" text="Users"/>
-            <Button layoutX="664.0" layoutY="14.0" onAction="#onProductsButtonClick" text="Products"/>
-            <Button layoutX="664.0" layoutY="93.0" onAction="#onPurchasesButtonClick" text="Purchases"/>
-            <Button layoutX="664.0" layoutY="52.0" onAction="#onStoresButtonClick" text="Stores"/>
-            <Button layoutX="664.0" layoutY="180.0" onAction="#onStocksButtonClick" text="Stocks"/>
-            <Button layoutX="275.0" layoutY="14.0" mnemonicParsing="false" onAction="#onAddStock" text="Add Stock"/>
-            <Button layoutX="275.0" layoutY="52.0" mnemonicParsing="false" onAction="#onModifyStock" text="Modify Stock"/>
-            <Button layoutX="276.0" layoutY="93.0" mnemonicParsing="false" onAction="#onDeleteStock" text="Delete Stock"/>
-        </AnchorPane>
+        <BorderPane>
+            <top>
+                <VBox alignment="TOP_CENTER" minHeight="-Infinity" prefHeight="330.0">
+                    <BorderPane layoutX="666.0" layoutY="14.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="70.0" prefWidth="500.0" styleClass="card" VBox.vgrow="NEVER">
+                        <center>
+                            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0" BorderPane.alignment="CENTER">
+                                <children>
+                                    <Button minWidth="70.0" onAction="#onUsersButtonClick" text="Users" />
+                                    <Button minWidth="70.0" onAction="#onProductsButtonClick" text="Products" />
+                                    <Button minWidth="70.0" onAction="#onPurchasesButtonClick" text="Purchases" />
+                                    <Button minWidth="70.0" onAction="#onStoresButtonClick" text="Stores" />
+                                    <Button minWidth="70.0" onAction="#onStocksButtonClick" text="Stocks" />
+                                </children>
+                            </HBox>
+                        </center>
+                  <VBox.margin>
+                     <Insets bottom="50.0" top="10.0" />
+                  </VBox.margin>
+                    </BorderPane>
+                    <HBox alignment="CENTER" spacing="50.0">
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="card">
+                            <center>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Button fx:id="addProduct" mnemonicParsing="false" onAction="#onAddProduct" text="Add Product" />
+                                        <Button mnemonicParsing="false" onAction="#onModifyProduct" text="Modify Product" />
+                                        <Button mnemonicParsing="false" onAction="#onDeleteProduct" text="Delete Product" />
+                                    </children>
+                                </VBox>
+                            </center>
+                        </BorderPane>
+                        <BorderPane layoutX="816.0" layoutY="127.0" prefHeight="200.0" prefWidth="200.0" styleClass="card">
+                            <center>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Button mnemonicParsing="false" onAction="#onAddStore" text="Add Store" />
+                                        <Button mnemonicParsing="false" onAction="#onModifyStore" text="Modify Store" />
+                                        <Button mnemonicParsing="false" onAction="#onDeleteStore" text="Delete Store" />
+                                    </children>
+                                </VBox>
+                            </center>
+                        </BorderPane>
+                        <BorderPane layoutX="1066.0" layoutY="127.0" prefHeight="200.0" prefWidth="200.0" styleClass="card">
+                            <center>
+                                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
+                                    <children>
+                                        <Button mnemonicParsing="false" onAction="#onAddStock" text="Add Stock" />
+                                        <Button mnemonicParsing="false" onAction="#onModifyStock" text="Modify Stock" />
+                                        <Button mnemonicParsing="false" onAction="#onDeleteStock" text="Delete Stock" />
+                                    </children>
+                                </VBox>
+                            </center>
+                        </BorderPane>
+                    </HBox>
+                </VBox>
+            </top>
+            <center>
+                <VBox fx:id="content" alignment="TOP_CENTER" fillWidth="false" BorderPane.alignment="TOP_CENTER">
+                    <BorderPane.margin>
+                       <Insets top="50.0" bottom="50.0" />
+                    </BorderPane.margin>
+                </VBox>
+            </center>
+        </BorderPane>
     </center>
 </BorderPane>
