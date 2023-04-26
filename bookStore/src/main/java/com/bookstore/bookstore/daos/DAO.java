@@ -5,10 +5,9 @@ import lombok.Getter;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.cfg.Environment;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class DAO {
@@ -40,6 +39,14 @@ public class DAO {
 
         session.doWork(connection -> System.out.println("Connected to database"));
 
+        if (!Objects.equals(configuration.getProperty(Environment.HBM2DDL_AUTO), "validate")
+                && !Objects.equals(configuration.getProperty(Environment.HBM2DDL_AUTO), "none")) {
+
+            System.out.println("please import the sql file");
+            session.close();
+            System.exit(1);
+        }
+
         session.close();
     }
 
@@ -58,7 +65,6 @@ public class DAO {
         Transaction t = session.beginTransaction();
 
         id = (Integer) session.save(obj);
-        System.out.println(id);
 
         t.commit();
         session.close();

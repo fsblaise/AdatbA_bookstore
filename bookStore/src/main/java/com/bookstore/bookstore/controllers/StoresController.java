@@ -103,7 +103,6 @@ public class StoresController {
             if (split[0].equals("0") && split[1].equals("0")) continue;
             Button b = new Button();
             b.setOnAction(actionEvent -> {
-                System.out.println("asdasd");
                 this.storeAddress.setText(store.getPlace());
             });
             Image img = new Image(getClass().getResource("/com/bookstore/bookstore/image/pin.png").toExternalForm());
@@ -168,7 +167,6 @@ public class StoresController {
             map.getChildren().add(b);
             // add new store to the db
             String coords = (mouseEvent.getX()-20) + "|" + (mouseEvent.getY()-12);
-            System.out.println(coords);
             Store store = new Store();
             store.setCapacity(capacitySpinner.getValue());
             store.setPlace(addressField.getText());
