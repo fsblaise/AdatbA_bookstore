@@ -160,8 +160,6 @@ INSERT INTO BOOK_STORE_PRODUCT(review, type, name, production, genre) VALUES(3, 
 INSERT INTO BOOK_STORE_PRODUCT(review, type, name, production, genre) VALUES(4, 'Hangoskönyv', 'A halál hívása', '2008', 'Thriller');
 INSERT INTO BOOK_STORE_PRODUCT(review, type, name, production, genre) VALUES(5, 'Hangoskönyv', 'Az elveszett idő nyomában', '2005', 'Sci-fi');
 INSERT INTO BOOK_STORE_PRODUCT(review, type, name, production, genre) VALUES(2, 'Hangoskönyv', 'A bennünk rejlő erő', '2017', 'Önismereti');
-
--- Az Aruhaz tabla feltoltese:ÁruházId, Típus, Helyszín, Kapacitás
 INSERT INTO BOOK_STORE_STORE(type, place, capacity, coords) VALUES( 'fizikai', 'Budapest, IX. kerület, Üllői út 182.', 750, '534.0|287.0');
 INSERT INTO BOOK_STORE_STORE(type, place, capacity, coords) VALUES( 'fizikai', 'Debrecen, Nagyállomás utca 1.', 400, '940.0|261.0');
 INSERT INTO BOOK_STORE_STORE(type, place, capacity, coords) VALUES( 'fizikai', 'Szeged, Tisza Lajos krt. 49.', 200, '695.0|544.0');
@@ -174,8 +172,6 @@ INSERT INTO BOOK_STORE_STORE(type, place, capacity, coords) VALUES( 'fizikai', '
 INSERT INTO BOOK_STORE_STORE(type, place, capacity, coords) VALUES( 'fizikai', 'Vásárhely, Kiskakas út 3.', 600, '726.0|530.0');
 INSERT INTO BOOK_STORE_STORE(type, place, capacity, coords) VALUES( 'fizikai', 'Eger, Ideges sor 67.', 500, '735.0|196.0');
 INSERT INTO BOOK_STORE_STORE(type, place, capacity, coords) VALUES( 'online', 'online', 10.000, '0|0');
-
--- A Felhasznalo tabla feltoltese: FelhasználóId, Név, Email, SzületésiIdő, ,  MegvásároltTermékekSzáma
 INSERT INTO BOOK_STORE_USERS(password, name, email, birthdate, purchasedproducts, isregular) VALUES('e6837af0b5dcb5397c6bc8b52c0fb95aa49a3fea4303e274c7501f0857cb9b80', 'Kovács János', 'kovacs.janos@nevhu.com', TO_DATE('20-05-1975','dd mm yyyy'), 11, 0);
 INSERT INTO BOOK_STORE_USERS(password, name, email, birthdate, purchasedproducts, isregular) VALUES('e6837af0b5dcb5397c6bc8b52c0fb95aa49a3fea4303e274c7501f0857cb9b80', 'Nagy Anna', 'nagy.anna@nevhu.com', TO_DATE('07-09-1983', 'dd mm yyyy'),16, 0);
 INSERT INTO BOOK_STORE_USERS(password, name, email, birthdate, purchasedproducts, isregular) VALUES('e6837af0b5dcb5397c6bc8b52c0fb95aa49a3fea4303e274c7501f0857cb9b80', 'Tóth Gábor', 'toth.gabor@nevhu.com', TO_DATE('11-12-1972','dd mm yyyy'), 22, 0);
@@ -216,9 +212,8 @@ INSERT INTO BOOK_STORE_USERS(password, name, email, birthdate, purchasedproducts
 INSERT INTO BOOK_STORE_USERS(password, name, email, birthdate, purchasedproducts, isregular) VALUES('e6837af0b5dcb5397c6bc8b52c0fb95aa49a3fea4303e274c7501f0857cb9b80', 'Németh András', 'nemeth.andras@valami.hu', TO_DATE('11-03-1983', 'dd mm yyyy'),23, 0);
 INSERT INTO BOOK_STORE_USERS(password, name, email, birthdate, purchasedproducts, isregular) VALUES('e6837af0b5dcb5397c6bc8b52c0fb95aa49a3fea4303e274c7501f0857cb9b80', 'Takács Zsuzsanna', 'takacs.zsuzsanna@valami.hu', TO_DATE('17-12-1987', 'dd mm yyyy'),9, 0);
 INSERT INTO BOOK_STORE_USERS(password, name, email, birthdate, purchasedproducts, isregular) VALUES('e6837af0b5dcb5397c6bc8b52c0fb95aa49a3fea4303e274c7501f0857cb9b80', 'Pálfi Viktória', 'palfi.viktoria@valami.hu', TO_DATE('20-02-1995', 'dd mm yyyy'),27, 0);
-
-
--- A Vasarlas tabla feltoltese:
+INSERT INTO BOOK_STORE_USERS(password, name, email, birthdate, purchasedproducts, isregular) VALUES('8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin', 'admin', TO_DATE('26-04-2023', 'dd mm yyyy'),0, 0);
+INSERT INTO BOOK_STORE_USERS(password, name, email, birthdate, purchasedproducts, isregular) VALUES('cf43e029efe6476e1f7f84691f89c876818610c2eaeaeb881103790a48745b82', 'alma', 'alma@alma.com', TO_DATE('26-04-2023', 'dd mm yyyy'),0, 0);
 INSERT INTO BOOK_STORE_PURCHASE(dateofpurchase, price, review, user_id) VALUES(TO_DATE('02-01-2023','dd mm yyyy'), 55000, 4, 15);
 INSERT INTO BOOK_STORE_PURCHASE(dateofpurchase, price, review, user_id) VALUES(TO_DATE('05-01-2023','dd mm yyyy'), 82000, 3, 23);
 INSERT INTO BOOK_STORE_PURCHASE(dateofpurchase, price, review, user_id) VALUES(TO_DATE('10-01-2023','dd mm yyyy'), 45000, 2, 9);
@@ -245,7 +240,6 @@ INSERT INTO BOOK_STORE_PURCHASE(dateofpurchase, price, review, user_id) VALUES(T
 INSERT INTO BOOK_STORE_PURCHASE(dateofpurchase, price, review, user_id) VALUES(TO_DATE('14-03-2023','dd mm yyyy'), 78000, 5, 26);
 INSERT INTO BOOK_STORE_PURCHASE(dateofpurchase, price, review, user_id) VALUES(TO_DATE('17-03-2023','dd mm yyyy'), 27000, 1, 3);
 INSERT INTO BOOK_STORE_PURCHASE(dateofpurchase, price, review, user_id) VALUES(TO_DATE('22-03-2023','dd mm yyyy'), 99000, 2, 20);
-
 INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(purchase_id, products) VALUES(1, 72);
 INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(purchase_id, products) VALUES(1, 27);
 INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(purchase_id, products) VALUES(1, 155);
@@ -340,7 +334,6 @@ INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(purchase_id, products) VALUES(16, 15);
 INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(purchase_id, products) VALUES(16, 13);
 INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(purchase_id, products) VALUES(16, 11);
 INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(purchase_id, products) VALUES(16, 2);
-
 INSERT INTO BOOK_STORE_STOCK(capacity, sum, ISLOW, PRODUCT_ID, STORE_ID) VALUES(100, 50, 0, 1, 1);
 INSERT INTO BOOK_STORE_STOCK(capacity, sum, ISLOW, PRODUCT_ID, STORE_ID) VALUES(100, 100, 0, 1, 2);
 INSERT INTO BOOK_STORE_STOCK(capacity, sum, ISLOW, PRODUCT_ID, STORE_ID) VALUES(200, 200, 0, 2, 2);
@@ -483,4 +476,3 @@ BEGIN
     user_id := :NEW.USER_ID;
     UPDATE BOOK_STORE_USERS SET PURCHASEDPRODUCTS = PURCHASEDPRODUCTS + 1 WHERE USER_ID = user_id;
 END;
-

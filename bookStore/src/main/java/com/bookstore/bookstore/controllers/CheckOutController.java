@@ -347,8 +347,6 @@ public class CheckOutController {
             }
         }
 
-        System.out.println(this.cartArray);
-
         this.generateTable(this.cartArray);
     }
 
