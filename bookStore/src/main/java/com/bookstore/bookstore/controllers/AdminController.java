@@ -270,7 +270,7 @@ public class AdminController {
             return;
         }
 
-        DAO.instance().deleteData(DAO.instance().getDataByID(Product.class, Integer.parseInt(idString)));
+        DAO.instance().deleteProduct(Integer.parseInt(idString));
     }
 
     public void onDeleteStore() {
@@ -281,7 +281,7 @@ public class AdminController {
             return;
         }
 
-        DAO.instance().deleteData(DAO.instance().getDataByID(Store.class, Integer.parseInt(idString)));
+        DAO.instance().deleteStore(Integer.parseInt(idString));
     }
 
     public <T> void generateTable(ArrayList<T> data) {

@@ -304,4 +304,24 @@ public class DAO {
 
         return purchase;
     }
+
+    public void deleteStore(int id) {
+        Session session = this.sessionFactory.openSession();
+        Transaction t = session.beginTransaction();
+
+        session.createNativeQuery("BEGIN deleteStore(?); END;").setParameter(1, id).executeUpdate();
+
+        t.commit();
+        session.close();
+    }
+
+    public void deleteProduct(int id) {
+        Session session = this.sessionFactory.openSession();
+        Transaction t = session.beginTransaction();
+
+        session.createNativeQuery("BEGIN deleteProduct(?); END;").setParameter(1, id).executeUpdate();
+
+        t.commit();
+        session.close();
+    }
 }
