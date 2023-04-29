@@ -1,3 +1,44 @@
+DECLARE
+    schema_name VARCHAR(255);
+    create_drop NUMBER;
+    do_drop NUMBER;
+BEGIN
+    schema_name := 'C##';
+    create_drop := 0;
+    do_drop := 1;
+
+    IF create_drop = 1 THEN
+        IF do_drop = 1 THEN
+            execute immediate 'drop table ' || schema_name || '.BOOK_STORE_OFFLINE cascade constraints';
+            execute immediate 'drop table ' || schema_name || '.BOOK_STORE_ONLINE cascade constraints';
+            execute immediate 'drop table ' || schema_name || '.BOOK_STORE_PRODUCT cascade constraints ';
+            execute immediate 'drop table ' || schema_name || '.BOOK_STORE_PURCHASE cascade constraints';
+            execute immediate 'drop table ' || schema_name || '.BOOK_STORE_PURCHASED_PRODUCTS cascade constraints';
+            execute immediate 'drop table ' || schema_name || '.BOOK_STORE_STOCK cascade constraints';
+            execute immediate 'drop table ' || schema_name || '.BOOK_STORE_STORE cascade constraints';
+            execute immediate 'drop table ' || schema_name || '.BOOK_STORE_USERS cascade constraints';
+        END IF;
+
+        execute immediate 'create table ' || schema_name || '.BOOK_STORE_OFFLINE (id number(10,0) generated as identity, purchase_id number(10,0), store_id number(10,0), primary key (id))';
+        execute immediate 'create table ' || schema_name || '.BOOK_STORE_ONLINE (id number(10,0) generated as identity, address varchar2(20 char), dateTime date, purchase_id number(10,0), primary key (id))';
+        execute immediate 'create table ' || schema_name || '.BOOK_STORE_PRODUCT (id number(10,0) generated as identity, genre varchar2(20 char), name varchar2(100 char), production varchar2(4 char), review number(10,0), type varchar2(20 char), primary key (id))';
+        execute immediate 'create table ' || schema_name || '.BOOK_STORE_PURCHASE (id number(10,0) generated as identity, dateOfPurchase date, price number(10,0), review number(10,0), user_id number(10,0), primary key (id))';
+        execute immediate 'create table ' || schema_name || '.BOOK_STORE_PURCHASED_PRODUCTS (Purchase_id number(10,0) not null, products number(10,0))';
+        execute immediate 'create table ' || schema_name || '.BOOK_STORE_STOCK (id number(10,0) generated as identity, capacity number(10,0), isLow number(10,0) not null, sum number(10,0), product_id number(10,0), store_id number(10,0), primary key (id))';
+        execute immediate 'create table ' || schema_name || '.BOOK_STORE_STORE (id number(10,0) generated as identity, capacity number(10,0), coords varchar2(20 char), place varchar2(100 char), type varchar2(7 char), primary key (id))';
+        execute immediate 'create table ' || schema_name || '.BOOK_STORE_USERS (id number(10,0) generated as identity, birthDate date, email varchar2(30 char), isRegular number(1,0), name varchar2(50 char), password varchar2(64 char), purchasedProducts number(10,0), primary key (id))';
+        execute immediate 'alter table ' || schema_name || '.BOOK_STORE_STORE add constraint UK_3y9mwugl2smlv4vp89q2oqptt unique (place)';
+        execute immediate 'alter table ' || schema_name || '.BOOK_STORE_OFFLINE add constraint FKfxlk1q4b0c8g9h5arul4i1mji foreign key (purchase_id) references C##AWR2BO.BOOK_STORE_PURCHASE';
+        execute immediate 'alter table ' || schema_name || '.BOOK_STORE_OFFLINE add constraint FK1ukq3jhlvagk31s5x0iycjwx foreign key (store_id) references C##AWR2BO.BOOK_STORE_STORE';
+        execute immediate 'alter table ' || schema_name || '.BOOK_STORE_ONLINE add constraint FKm2px7qea88y94tek2wuveq5ay foreign key (purchase_id) references C##AWR2BO.BOOK_STORE_PURCHASE';
+        execute immediate 'alter table ' || schema_name || '.BOOK_STORE_PURCHASE add constraint FK6dt5sj91ndg661l0vq9hbisfo foreign key (user_id) references C##AWR2BO.BOOK_STORE_USERS';
+        execute immediate 'alter table ' || schema_name || '.BOOK_STORE_PURCHASED_PRODUCTS add constraint FKfu4nx2mrkdup3fd2p1js0eqpg foreign key (Purchase_id) references C##AWR2BO.BOOK_STORE_PURCHASE';
+        execute immediate 'alter table ' || schema_name || '.BOOK_STORE_STOCK add constraint FKcyr44r1vwe7iumaw4ke107uof foreign key (product_id) references C##AWR2BO.BOOK_STORE_PRODUCT';
+        execute immediate 'alter table ' || schema_name || '.BOOK_STORE_STOCK add constraint FKewlo5vi9aqpygvx1wkprqp2y0 foreign key (store_id) references C##AWR2BO.BOOK_STORE_STORE';
+    END IF;
+end;
+
+
 INSERT INTO BOOK_STORE_PRODUCT(review, type, name, production, genre) VALUES(4, 'Regény', 'Az utolsó mohikán', '1826', 'Kaland');
 INSERT INTO BOOK_STORE_PRODUCT(review, type, name, production, genre) VALUES(3, 'Regény', 'A század legnagyobb hazugsága', '2007', 'Történelmi');
 INSERT INTO BOOK_STORE_PRODUCT(review, type, name, production, genre) VALUES(5, 'Regény', 'A mester és Margarita', '1967', 'Fantasy');
@@ -213,7 +254,7 @@ INSERT INTO BOOK_STORE_USERS(password, name, email, birthdate, purchasedproducts
 INSERT INTO BOOK_STORE_USERS(password, name, email, birthdate, purchasedproducts, isregular) VALUES('e6837af0b5dcb5397c6bc8b52c0fb95aa49a3fea4303e274c7501f0857cb9b80', 'Takács Zsuzsanna', 'takacs.zsuzsanna@valami.hu', TO_DATE('17-12-1987', 'dd mm yyyy'),9, 0);
 INSERT INTO BOOK_STORE_USERS(password, name, email, birthdate, purchasedproducts, isregular) VALUES('e6837af0b5dcb5397c6bc8b52c0fb95aa49a3fea4303e274c7501f0857cb9b80', 'Pálfi Viktória', 'palfi.viktoria@valami.hu', TO_DATE('20-02-1995', 'dd mm yyyy'),27, 0);
 INSERT INTO BOOK_STORE_USERS(password, name, email, birthdate, purchasedproducts, isregular) VALUES('8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 'admin', 'admin', TO_DATE('26-04-2023', 'dd mm yyyy'),0, 0);
-INSERT INTO BOOK_STORE_USERS(password, name, email, birthdate, purchasedproducts, isregular) VALUES('cf43e029efe6476e1f7f84691f89c876818610c2eaeaeb881103790a48745b82', 'alma', 'alma@alma.com', TO_DATE('26-04-2023', 'dd mm yyyy'),0, 0);
+INSERT INTO BOOK_STORE_USERS(password, name, email, birthdate, purchasedproducts, isregular) VALUES('cf43e029efe6476e1f7f84691f89c876818610c2eaeaeb881103790a48745b82', 'alma', 'alma@alma.com', TO_DATE('26-04-2023', 'dd mm yyyy'),8, 0);
 INSERT INTO BOOK_STORE_PURCHASE(dateofpurchase, price, review, user_id) VALUES(TO_DATE('02-01-2023','dd mm yyyy'), 55000, 4, 15);
 INSERT INTO BOOK_STORE_PURCHASE(dateofpurchase, price, review, user_id) VALUES(TO_DATE('05-01-2023','dd mm yyyy'), 82000, 3, 23);
 INSERT INTO BOOK_STORE_PURCHASE(dateofpurchase, price, review, user_id) VALUES(TO_DATE('10-01-2023','dd mm yyyy'), 45000, 2, 9);
@@ -240,6 +281,14 @@ INSERT INTO BOOK_STORE_PURCHASE(dateofpurchase, price, review, user_id) VALUES(T
 INSERT INTO BOOK_STORE_PURCHASE(dateofpurchase, price, review, user_id) VALUES(TO_DATE('14-03-2023','dd mm yyyy'), 78000, 5, 26);
 INSERT INTO BOOK_STORE_PURCHASE(dateofpurchase, price, review, user_id) VALUES(TO_DATE('17-03-2023','dd mm yyyy'), 27000, 1, 3);
 INSERT INTO BOOK_STORE_PURCHASE(dateofpurchase, price, review, user_id) VALUES(TO_DATE('22-03-2023','dd mm yyyy'), 99000, 2, 20);
+INSERT INTO BOOK_STORE_PURCHASE(dateofpurchase, price, review, user_id) VALUES(TO_DATE('22-03-2023','dd mm yyyy'), 1000, 5, 42);
+INSERT INTO BOOK_STORE_PURCHASE(dateofpurchase, price, review, user_id) VALUES(TO_DATE('22-03-2023','dd mm yyyy'), 1000, 5, 42);
+INSERT INTO BOOK_STORE_PURCHASE(dateofpurchase, price, review, user_id) VALUES(TO_DATE('22-03-2023','dd mm yyyy'), 1000, 5, 42);
+INSERT INTO BOOK_STORE_PURCHASE(dateofpurchase, price, review, user_id) VALUES(TO_DATE('22-03-2023','dd mm yyyy'), 1000, 5, 42);
+INSERT INTO BOOK_STORE_PURCHASE(dateofpurchase, price, review, user_id) VALUES(TO_DATE('22-03-2023','dd mm yyyy'), 1000, 5, 42);
+INSERT INTO BOOK_STORE_PURCHASE(dateofpurchase, price, review, user_id) VALUES(TO_DATE('22-03-2023','dd mm yyyy'), 1000, 5, 42);
+INSERT INTO BOOK_STORE_PURCHASE(dateofpurchase, price, review, user_id) VALUES(TO_DATE('22-03-2023','dd mm yyyy'), 1000, 5, 42);
+INSERT INTO BOOK_STORE_PURCHASE(dateofpurchase, price, review, user_id) VALUES(TO_DATE('22-03-2023','dd mm yyyy'), 1000, 5, 42);
 INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(purchase_id, products) VALUES(1, 72);
 INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(purchase_id, products) VALUES(1, 27);
 INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(purchase_id, products) VALUES(1, 155);
@@ -334,6 +383,14 @@ INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(purchase_id, products) VALUES(16, 15);
 INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(purchase_id, products) VALUES(16, 13);
 INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(purchase_id, products) VALUES(16, 11);
 INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(purchase_id, products) VALUES(16, 2);
+INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(purchase_id, products) VALUES(27, 1);
+INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(purchase_id, products) VALUES(28, 1);
+INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(purchase_id, products) VALUES(29, 1);
+INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(purchase_id, products) VALUES(30, 1);
+INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(purchase_id, products) VALUES(31, 1);
+INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(purchase_id, products) VALUES(32, 1);
+INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(purchase_id, products) VALUES(33, 1);
+INSERT INTO BOOK_STORE_PURCHASED_PRODUCTS(purchase_id, products) VALUES(34, 1);
 INSERT INTO BOOK_STORE_STOCK(capacity, sum, ISLOW, PRODUCT_ID, STORE_ID) VALUES(100, 50, 0, 1, 1);
 INSERT INTO BOOK_STORE_STOCK(capacity, sum, ISLOW, PRODUCT_ID, STORE_ID) VALUES(100, 100, 0, 1, 2);
 INSERT INTO BOOK_STORE_STOCK(capacity, sum, ISLOW, PRODUCT_ID, STORE_ID) VALUES(200, 200, 0, 2, 2);
@@ -415,6 +472,14 @@ INSERT INTO BOOK_STORE_STOCK(capacity, sum, ISLOW, PRODUCT_ID, STORE_ID) VALUES(
 INSERT INTO BOOK_STORE_STOCK(capacity, sum, ISLOW, PRODUCT_ID, STORE_ID) VALUES(200, 100, 0, 108, 2);
 INSERT INTO BOOK_STORE_STOCK(capacity, sum, ISLOW, PRODUCT_ID, STORE_ID) VALUES(200, 100, 0, 109, 2);
 INSERT INTO BOOK_STORE_STOCK(capacity, sum, ISLOW, PRODUCT_ID, STORE_ID) VALUES(200, 100, 0, 110, 2);
+INSERT INTO BOOK_STORE_ONLINE(ADDRESS, DATETIME, PURCHASE_ID) VALUES('Szeged Alma u. 10', TO_DATE('22-03-2023','dd mm yyyy'), 27);
+INSERT INTO BOOK_STORE_ONLINE(ADDRESS, DATETIME, PURCHASE_ID) VALUES('Szeged Alma u. 10', TO_DATE('22-03-2023','dd mm yyyy'), 28);
+INSERT INTO BOOK_STORE_ONLINE(ADDRESS, DATETIME, PURCHASE_ID) VALUES('Szeged Alma u. 10', TO_DATE('22-03-2023','dd mm yyyy'), 29);
+INSERT INTO BOOK_STORE_ONLINE(ADDRESS, DATETIME, PURCHASE_ID) VALUES('Szeged Alma u. 10', TO_DATE('22-03-2023','dd mm yyyy'), 30);
+INSERT INTO BOOK_STORE_ONLINE(ADDRESS, DATETIME, PURCHASE_ID) VALUES('Szeged Alma u. 10', TO_DATE('22-03-2023','dd mm yyyy'), 31);
+INSERT INTO BOOK_STORE_ONLINE(ADDRESS, DATETIME, PURCHASE_ID) VALUES('Szeged Alma u. 10', TO_DATE('22-03-2023','dd mm yyyy'), 32);
+INSERT INTO BOOK_STORE_ONLINE(ADDRESS, DATETIME, PURCHASE_ID) VALUES('Szeged Alma u. 10', TO_DATE('22-03-2023','dd mm yyyy'), 33);
+INSERT INTO BOOK_STORE_ONLINE(ADDRESS, DATETIME, PURCHASE_ID) VALUES('Szeged Alma u. 10', TO_DATE('22-03-2023','dd mm yyyy'), 34);
 
 CREATE OR REPLACE PROCEDURE decrementStock(storeId IN NUMBER, productId IN NUMBER)
     IS

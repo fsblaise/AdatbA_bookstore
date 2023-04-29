@@ -208,7 +208,7 @@ public class DAO {
         Session session = this.sessionFactory.openSession();
         Transaction t = session.beginTransaction();
 
-        List results = session.createNativeQuery("Select book_store_store.place FROM book_store_store GROUP BY book_store_store.place").setCacheable(true).setCacheMode(CacheMode.NORMAL).list();
+        List results = session.createNativeQuery("Select book_store_store.place FROM book_store_store WHERE PLACE <> 'online' GROUP BY book_store_store.place").setCacheable(true).setCacheMode(CacheMode.NORMAL).list();
 
         t.commit();
         session.close();
