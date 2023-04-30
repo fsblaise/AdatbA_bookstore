@@ -19,11 +19,11 @@ IB152L-6
 3. Ugyanitt a 'hbm2ddl.auto' propertyt át kell írni 'create'-re. (Ez fogja létrehozni a táblákat az adatbázisban.) (opcionális)
 4. El kell indítani az alkalmazást (MainApplication.java a belépési pont). (opcionális)
 5. A 'resources/hibernateInsert.sql'-ben található inicializáló scriptet le kell futtatni SQLDeveloper-ben.
-	 A).  Amennyiben az előző két lépést nem lett elvégezve:
-        I.  schema_name változóba be kell írni a schema nevét (C##NEPTUN)
-        II.  create-drop változót '1'-re kell állítani
-        III.  do_drop változót '1'-re kell állítani amennyiben a táblák már léteztek.
-    B). Amennyiben az előző két lépés el lett végezve:
-        I.  create-drop változót '0'-ra kell állítani
+	1.  Amennyiben az előző két lépést nem lett elvégezve:
+		1.  schema_name változóba be kell írni a schema nevét (C##NEPTUN)
+		2.  create-drop változót '1'-re kell állítani
+		3.  do_drop változót '1'-re kell állítani amennyiben a táblák már léteztek.
+	2. Amennyiben az előző két lépés el lett végezve:
+		1. create-drop változót '0'-ra kell állítani
 6. A 'hbm2ddl.auto' propertyt vissza kell írni 'validate'-re. (Így nem fogja újra kitörölni/létrehozni a táblákat újra és újra).
 7. Működőképes a program, csak futtatni kell és használni.
