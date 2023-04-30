@@ -8,9 +8,9 @@ IB152L-6
 # Online könyvesbolt
 
 ## Készítette:
-Bertók Laura
-Csizi Gergő Lajos
-Oláh Balázs
+- Bertók Laura
+- Csizi Gergő Lajos
+- Oláh Balázs
 
 # Telepítés/beüzemelés
 
